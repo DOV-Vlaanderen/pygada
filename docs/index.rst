@@ -31,7 +31,18 @@ Contents:
    :maxdepth: 1
 
    installation
+   
+.. toctree::
+   :caption: User guide
+   :maxdepth: 1
 
+
+.. toctree::
+   :caption: Developer guide
+   :maxdepth: 1
+
+   history
+   authors
 
 Indices and tables
 ==================
