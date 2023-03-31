@@ -4,7 +4,6 @@ python:
     install:
         - requirements: environment.yml
         - requirements: requirements_dev.txt
-        - requirements: requirements_doc.txt
         - method: pip
           path: .
 
