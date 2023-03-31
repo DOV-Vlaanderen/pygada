@@ -2,7 +2,7 @@ version: 2
 
 python:
     install:
-        - requirements: environment.txt
+        - requirements: requirements.txt
         - requirements: requirements_dev.txt
         - method: pip
           path: .
