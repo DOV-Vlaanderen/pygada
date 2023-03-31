@@ -1,4 +1,5 @@
 # pygada
+[![Documentation Status](https://readthedocs.org/projects/pygada/badge/?version=latest)](https://pygada.readthedocs.io/en/latest/?badge=latest)
 
 pygada is a python package to perform automated exploratory and geostatistical data-analysis.
 
