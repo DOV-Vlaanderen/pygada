@@ -9,6 +9,7 @@ A python package to perform automated exploratory and geostatistical data-analys
 
 * Free software: MIT license
 * Documentation: https://pydov.readthedocs.io
+test
 
 Introduction
 ------------
