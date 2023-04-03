@@ -40,7 +40,9 @@ Contents:
 .. toctree::
    :caption: Developer guide
    :maxdepth: 1
-
+   
+   contributing
+   development
    history
    authors
 
