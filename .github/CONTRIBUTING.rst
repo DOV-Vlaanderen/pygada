@@ -5,9 +5,9 @@ Contributing to pygada
 =====================
 
 First of all, thanks for considering contributing to pygada! It's people like you that make it
-rewarding for us - the project maintainers_ to work on pygada.
+rewarding for us - the project :ref:`authors` to work on pygada.
 
-.. _maintainers: https://github.com/DOV-Vlaanderen/pygada/blob/main/docs/authors.rst
+.. _maintainers: .
 
 pygada is an open source project, maintained by people who care.
 
