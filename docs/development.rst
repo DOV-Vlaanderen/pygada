@@ -140,6 +140,11 @@ in the development installation instructions :ref:`for package contributors <dev
 
    When adding dependencies, make sure to make the appropriate adjustments in the individual file!
 
+.. note::
+   The repository contains also an ``environment*.yml`` file, to create the conda environment.
+
+   When adding dependencies, make sure to also adjust this file!
+
 .. _unittests:
 
 Running the unit tests
