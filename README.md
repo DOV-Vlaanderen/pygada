@@ -4,7 +4,7 @@
 
 pygada is a python package to perform automated exploratory and geostatistical data-analysis.
 
-test 
+test  
 
 It is hosted on [GitHub](https://github.com/DOV-Vlaanderen/pygada) and development is coordinated by [Databank Ondergrond Vlaanderen (DOV)](https://www.dov.vlaanderen.be). \
 DOV aggregates data about soil, subsoil and groundwater of Flanders and makes them publicly available.
