@@ -40,7 +40,7 @@ application. Feel free to use the environment you like the most.
    .. image:: https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png
       :target: https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png
       :alt: forkrepo
-      :height: 200px
+      :height: 100px
 
 #.
    You’ve successfully forked the pygada repository, but so far, it only exists on GitHub. To be able to work on the project, you will need to clone it to your computer.
@@ -52,11 +52,11 @@ application. Feel free to use the environment you like the most.
        $ git clone https://github.com/DOV-Vlaanderen/pygada.git
        $ cd pygada
 
-   If you’re using the GitHub for Desktop application, navigate over to the bottom on the right hand side bar and click ``Clone in Desktop``. Once you've clicked this, it’ll ask you if you want to launch our desktop application to clone the repository, and where you want to save it. Pick a location on your computer that you feel comfortable with creating files and folders.
+   If you’re using the GitHub for Desktop application, navigate over to the bottom on the right hand side bar and click ``Open with GitHub Desktop``. Once you've clicked this, it’ll ask you if you want to launch the desktop application to clone the repository, and where you want to save it. Pick a location on your computer that you feel comfortable with creating files and folders.
 
 
-   .. image:: https://guides.github.com/activities/forking/clone-in-desktop.png
-      :target: https://guides.github.com/activities/forking/clone-in-desktop.png
+   .. image:: https://docs.github.com/assets/cb-88692/mw-1000/images/help/repository/open-with-desktop.webp
+      :target: https://docs.github.com/assets/cb-88692/mw-1000/images/help/repository/open-with-desktop.webp
       :alt: clonerepo
       :height: 200px
 
@@ -121,7 +121,7 @@ application. Feel free to use the environment you like the most.
    .. image:: https://github-images.s3.amazonaws.com/help/pull_requests/recently_pushed_branch.png
       :target: https://github-images.s3.amazonaws.com/help/pull_requests/recently_pushed_branch.png
       :alt: pullrequestrepo
-      :height: 200px
+      :height: 130px
 
 
 If any of the above seems like magic to you, please look up the `Git documentation <https://git-scm.com/documentation>`_ on the web, or ask a friend or another contributor for help.
@@ -154,7 +154,7 @@ using the command line. Navigate to the ``pygada`` main directory and do:
 
 When adding new functionality or adjusting code, make sure to check/update/add the unit tests. Test files
 are grouped by the functionality. Each file name starts with ``test_*`` (required for pytest), followed
-by the module name (e.g. ``search``, ``types``,...).
+by the module name.
 
 
 .. _docs-technical:
@@ -174,24 +174,6 @@ by `Read the docs`_.
 
 .. _Travis: https://travis-ci.org/DOV-Vlaanderen/pygada
 .. _Read the docs: https://readthedocs.org/
-
-For the notebooks in :ref:`tutorials`, the default is to *always* run the code of the notebooks
-when the documentation is created. This is defined by the ``nbsphinx_execute = 'always'`` option
-in the ``conf.py`` file.
-
-However, when appropriate, this behavior can be undone on the individual level of the
-notebook as explained in the `nbsphinx documentation`_.
-
-.. _nbsphinx documentation: https://nbsphinx.readthedocs.io/en/0.3.4/never-execute.html
-
-In short, to make sure a notebook is not rerun, but the content used as such, add the following
-to the notebook(!) metadata:
-
-::
-
-  "nbsphinx": {
-   "execute": "never"
-  }
 
 
 .. _Travis.ci: https://travis-ci.org/DOV-Vlaanderen/pygada
