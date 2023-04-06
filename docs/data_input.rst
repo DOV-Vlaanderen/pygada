@@ -7,10 +7,21 @@ Groundwater-data
 
 Possible parameters:
 
-.. dropdown:: Dropdown title
-    a
-    b
-    v
+.. dropdown:: Kationen
+    :animate: fade-in
+
+    K
+    NH4 
+    Fe 
+    Mn
+    Ca
+    Mg
+    Fe2+
+    Na
+    SomKAT
+    Fe(Tot.)
+    Sr
+    Fe3+
 
 
 Soil-data
