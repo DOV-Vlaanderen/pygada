@@ -8,7 +8,7 @@ Groundwater-data
 .. dropdown:: Possible parameters
     :animate: fade-in
     
-    The following parameters are possible to download groundwater data from.
+    From the following parameters groundwater data can be downloaded.
     
     .. tab-set::
 
