@@ -11,7 +11,99 @@ Groundwater-data
     From the following parameters groundwater data can be downloaded.
     
     .. tab-set::
+        
+        .. tab-item:: Andere parameters
+        
+                - %AfwijkBalans
+                - P2O5
+                - Si
+       
+       .. tab-item:: Anionen
+                
+                - Br                
+                - Cl
+                - CO3
+                - F
+                - HCO3
+                - NO2
+                - NO3
+                - OH
+                - PO4
+                - PO4(Tot.)
+                - SO4
+                - SomAN
 
+                
+        .. tab-item:: Chemisch PFAS
+                - 4:2 FTS
+                - 4H-PFUnDA
+                - 6:2 diPAP
+                - 6:2 FTS
+                - 6:2/8:2 diPAP
+                - 8:2 diPAP
+                - 8:2 FTS
+                - 8:2 FTUCA
+                - 9Cl-PF3ONS
+                - 10:2 FTS
+                - PFOSA
+                - PFECHS
+                - ADONA
+                - PFOAbranched
+                - EtPFOSA
+                - PFTrDS
+                - PFPeA
+                - PFHxA
+                - PFTeDA
+                - MePFOSA
+                - PFDA
+                - PFOAtotal
+                - PFNS
+                - PFDoDS
+                - PFOSbranched
+                - MePFOSAA
+                - HFPO-DA
+                - PFDoDA
+                - PFBA
+                - PFHxDA
+                - PFOS
+                - PFUnDA
+                - PFHpS
+                - PFHxS
+                - PFOA
+                - P37DMOA
+                - HPFHpA
+                - PFHpA
+                - PFNA
+                - PFUnDS
+                - PFBS
+                - PFODA
+                - PFTrDA
+                - PFDS
+                - PFOStotal
+                - PFPeS
+                - PFBSA
+                - EtPFOSAA
+                
+        .. tab-item:: Fysico chemische parameters
+        
+                - EC(Lab.)
+                - T
+                - EC
+                - pH
+                - TOC
+                - O2
+                - Eh°
+                - pH(Lab.)
+                - TDS
+                - Temp.
+                - EC(Veld)
+                - pH(Veld)
+                - droogrest
+                - H(tot)
+                - TAP
+                - TAM
+                - DOC
+                
         .. tab-item:: Kationen
         
                 - K
@@ -26,40 +118,24 @@ Groundwater-data
                 - Fe(Tot.)
                 - Sr
                 - Fe3+
-
-        .. tab-item:: Anionen
         
-                - HCO3
-                - F
-                - PO4
-                - Cl
-                - NO3
-                - CO3
-                - NO2
-                - SO4
-                - Br
-                - SomAN
-                - PO4(Tot.)
-                - OH
+                
+        .. tab-item:: Niet relevante metabolieten van pesticiden
         
-        .. tab-item:: Zware metalen
+                - AMPA
+                - VIS
+                - BAM
+                - meta8
+                - Metola-S-ESA
+                - Dchdzn
+                - meta4
         
-                - Pb
-                - Al
-                - Hg
-                - Cd
-                - Cu
-                - Co
-                - Ni
-                - Cr
-                - As
-                - Zn
-                - B
-                - Ba
-                - Ti
-                - Sn
-                - Sb
+        .. tab-item:: Organische verbindingen
         
+                - Tri
+                - Per
+                - CN
+                
         .. tab-item:: Pesticiden actieve stoffen
         
                 - metola-S
@@ -121,99 +197,23 @@ Groundwater-data
                 - Atr_desisoprop
                 - Terbu_des
         
-        .. tab-item:: Niet relevante metabolieten van pesticiden
+        .. tab-item:: Zware metalen
         
-                - AMPA
-                - VIS
-                - BAM
-                - meta8
-                - Metola-S-ESA
-                - Dchdzn
-                - meta4
-        
-        .. tab-item:: Fysico chemische parameters
-        
-                - EC(Lab.)
-                - T
-                - EC
-                - pH
-                - TOC
-                - O2
-                - Eh°
-                - pH(Lab.)
-                - TDS
-                - Temp.
-                - EC(Veld)
-                - pH(Veld)
-                - droogrest
-                - H(tot)
-                - TAP
-                - TAM
-                - DOC
-        
-        .. tab-item:: Organische verbindingen
-        
-                - Tri
-                - Per
-                - CN
-        
-        .. tab-item:: Chemisch PFAS
-        
-                - PFOSA
-                - PFECHS
-                - 8:2 FTS
-                - ADONA
-                - PFOAbranched
-                - EtPFOSA
-                - PFTrDS
-                - PFPeA
-                - PFHxA
-                - 8:2 FTUCA
-                - PFTeDA
-                - MePFOSA
-                - PFDA
-                - 8:2 diPAP
-                - 6:2 FTS
-                - PFOAtotal
-                - PFNS
-                - PFDoDS
-                - PFOSbranched
-                - MePFOSAA
-                - HFPO-DA
-                - PFDoDA
-                - PFBA
-                - PFHxDA
-                - 6:2 diPAP
-                - PFOS
-                - PFUnDA
-                - PFHpS
-                - PFHxS
-                - 6:2/8:2 diPAP
-                - PFOA
-                - P37DMOA
-                - 9Cl-PF3ONS
-                - 4:2 FTS
-                - HPFHpA
-                - PFHpA
-                - PFNA
-                - 10:2 FTS
-                - 4H-PFUnDA
-                - PFUnDS
-                - PFBS
-                - PFODA
-                - PFTrDA
-                - PFDS
-                - PFOStotal
-                - PFPeS
-                - PFBSA
-                - EtPFOSAA
-        
-        .. tab-item:: Andere parameters
-        
-                - %AfwijkBalans
-                - P2O5
-                - Si
-
+                - Pb
+                - Al
+                - Hg
+                - Cd
+                - Cu
+                - Co
+                - Ni
+                - Cr
+                - As
+                - Zn
+                - B
+                - Ba
+                - Ti
+                - Sn
+                - Sb
 
 Soil-data
 ---------
