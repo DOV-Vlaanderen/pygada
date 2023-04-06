@@ -5,40 +5,29 @@ Data-input
 Groundwater-data
 ----------------
 
-Possible parameters:
-
-.. dropdown:: Kationen
+.. dropdown:: Possible parameters
     :animate: fade-in
-
-    - K
-    - NH4 
-    - Fe 
-    - Mn
-    - Ca
-    - Mg
-    - Fe2+
-    - Na
-    - SomKAT
-    - Fe(Tot.)
-    - Sr
-    - Fe3+
     
-.. tab-set::
+    The following parameters are possible to download groundwater data from.
+    
+    .. tab-set::
 
-    .. tab-item:: Kationen
+        .. tab-item:: Kationen
 
-            - K
-            - NH4 
-            - Fe 
-            - Mn
-            - Ca
-            - Mg
-            - Fe2+
-            - Na
-            - SomKAT
-            - Fe(Tot.)
-            - Sr
-            - Fe3+
+                - K
+                - NH4 
+                - Fe 
+                - Mn
+                - Ca
+                - Mg
+                - Fe2+
+                - Na
+                - SomKAT
+                - Fe(Tot.)
+                - Sr
+                - Fe3+
+    
+
 
 Soil-data
 ---------
