@@ -1,6 +1,7 @@
 # pygada
 [![Documentation Status](https://readthedocs.org/projects/pygada/badge/?version=latest)](https://pygada.readthedocs.io/en/latest/?badge=latest)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DOV-Vlaanderen/pygada.git/main?urlpath=https%3A%2F%2Fgithub.com%2FDOV-Vlaanderen%2Fpygada%2Ftree%2Fmain%2Fdocs%2Fnotebooks)
 
 pygada is a python package to perform automated exploratory and geostatistical data-analysis.
       
