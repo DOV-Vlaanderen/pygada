@@ -13,13 +13,13 @@ Groundwater-data
     .. tab-set::
         
         .. tab-item:: Andere parameters
-        
+
             - %AfwijkBalans
             - P2O5
             - Si
        
-       .. tab-item:: Anionen
-                
+        .. tab-item:: Anionen
+
             - Br                
             - Cl
             - CO3
@@ -34,7 +34,7 @@ Groundwater-data
             - SomAN
         
         .. tab-item:: Chemisch PFAS
-        
+
             - 4:2 FTS
             - 4H-PFUnDA
             - 6:2 diPAP
@@ -85,7 +85,7 @@ Groundwater-data
             - PFUnDS
 
         .. tab-item:: Fysico chemische parameters
-        
+
             - EC(Lab.)
             - T
             - EC
@@ -105,7 +105,7 @@ Groundwater-data
             - DOC
                 
         .. tab-item:: Kationen
-        
+
             - K
             - NH4 
             - Fe 
@@ -120,7 +120,7 @@ Groundwater-data
             - Fe3+
          
         .. tab-item:: Niet relevante metabolieten van pesticiden
-        
+
             - AMPA
             - VIS
             - BAM
@@ -130,13 +130,13 @@ Groundwater-data
             - meta4
         
         .. tab-item:: Organische verbindingen
-        
+
             - Tri
             - Per
             - CN
                 
         .. tab-item:: Pesticiden actieve stoffen
-        
+
             - metola-S
             - Simaz
             - Chlortol
@@ -187,7 +187,7 @@ Groundwater-data
             - brom
         
         .. tab-item:: Relevante metabolieten van pesticiden
-        
+
             - atr_des
             - DMS
             - chazr
@@ -197,7 +197,7 @@ Groundwater-data
             - Terbu_des
         
         .. tab-item:: Zware metalen
-        
+
             - Pb
             - Al
             - Hg
