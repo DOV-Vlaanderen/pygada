@@ -38,6 +38,7 @@ Contents:
    :maxdepth: 1
    
    data_input
+   general
 
 .. toctree::
    :caption: Developer guide
