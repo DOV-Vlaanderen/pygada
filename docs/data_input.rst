@@ -6,8 +6,8 @@ Data-input
 
 There are two data-input options for pygada.
 
-- You can download data from the `subsoil database of Flanders`_ (DOV) with the use of `pydov`_ . 
-- You can use your own dataset.
+1. You can download data from the `subsoil database of Flanders`_ (DOV) with the use of `pydov`_ . 
+2. You can use your own dataset.
 
 .. _subsoil database of Flanders: https://www.dov.vlaanderen.be/
 .. _pydov: https://pydov.readthedocs.io/en/stable/
@@ -118,6 +118,7 @@ Groundwater-pydov
             - TOC
 
         .. tab-item:: Kationen
+        
             - Ca
             - Fe 
             - Fe2+
@@ -148,6 +149,7 @@ Groundwater-pydov
             - Tri
 
         .. tab-item:: Pesticiden actieve stoffen
+        
             - 245t     
             - 24d
             - 24db
