@@ -13,7 +13,7 @@ you can run yourself.
 
 To run these interactively online without installation, use the following binder link:
 
-.. image:: https://mybinder.org/badge.svg
+.. image:: https://mybinder.org/badge_logo.svg
    :target: https://mybinder.org/v2/gh/dov-vlaanderen/pygada/main?filepath=docs%2Fnotebooks
 
 
