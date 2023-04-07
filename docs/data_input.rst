@@ -32,9 +32,9 @@ Groundwater-data
                 - PO4(Tot.)
                 - SO4
                 - SomAN
-
                 
         .. tab-item:: Chemisch PFAS
+        
                 - 4:2 FTS
                 - 4H-PFUnDA
                 - 6:2 diPAP
@@ -45,45 +45,45 @@ Groundwater-data
                 - 8:2 FTUCA
                 - 9Cl-PF3ONS
                 - 10:2 FTS
-                - PFOSA
-                - PFECHS
                 - ADONA
-                - PFOAbranched
                 - EtPFOSA
-                - PFTrDS
-                - PFPeA
-                - PFHxA
-                - PFTeDA
-                - MePFOSA
-                - PFDA
-                - PFOAtotal
-                - PFNS
-                - PFDoDS
-                - PFOSbranched
-                - MePFOSAA
-                - HFPO-DA
-                - PFDoDA
-                - PFBA
-                - PFHxDA
-                - PFOS
-                - PFUnDA
-                - PFHpS
-                - PFHxS
-                - PFOA
-                - P37DMOA
-                - HPFHpA
-                - PFHpA
-                - PFNA
-                - PFUnDS
-                - PFBS
-                - PFODA
-                - PFTrDA
-                - PFDS
-                - PFOStotal
-                - PFPeS
-                - PFBSA
                 - EtPFOSAA
-                
+                - HPFHpA
+                - HFPO-DA
+                - MePFOSA
+                - MePFOSAA
+                - P37DMOA
+                - PFBA
+                - PFBS
+                - PFBSA
+                - PFDA
+                - PFDoDA
+                - PFDoDS
+                - PFDS
+                - PFECHS
+                - PFHpA
+                - PFHpS
+                - PFHxA
+                - PFHxDA
+                - PFHxS
+                - PFNA
+                - PFNS
+                - PFOA
+                - PFOAbranched
+                - PFOAtotal
+                - PFODA
+                - PFOS
+                - PFOSA
+                - PFOSbranched
+                - PFOStotal
+                - PFPeA
+                - PFPeS
+                - PFTeDA
+                - PFTrDA
+                - PFTrDS
+                - PFUnDA
+                - PFUnDS
+
         .. tab-item:: Fysico chemische parameters
         
                 - EC(Lab.)
