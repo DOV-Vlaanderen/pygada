@@ -85,134 +85,133 @@ Groundwater-data
             - PFUnDS
 
         .. tab-item:: Fysico chemische parameters
-
-            - EC(Lab.)
-            - T
+            
+            - DOC
+            - droogrest
             - EC
-            - pH
-            - TOC
-            - O2
+            - EC(Lab.)
+            - EC(Veld)
             - Eh°
+            - H(tot)
+            - O2
+            - pH
             - pH(Lab.)
+            - pH(Veld)
+            - T
+            - TAM
+            - TAP
             - TDS
             - Temp.
-            - EC(Veld)
-            - pH(Veld)
-            - droogrest
-            - H(tot)
-            - TAP
-            - TAM
-            - DOC
-                
-        .. tab-item:: Kationen
+            - TOC
 
-            - K
-            - NH4 
-            - Fe 
-            - Mn
+        .. tab-item:: Kationen
             - Ca
-            - Mg
+            - Fe 
             - Fe2+
-            - Na
-            - SomKAT
-            - Fe(Tot.)
-            - Sr
             - Fe3+
-         
+            - Fe(Tot.)
+            - K
+            - Mg
+            - Mn
+            - Na
+            - NH4 
+            - SomKAT
+            - Sr
+
         .. tab-item:: Niet relevante metabolieten van pesticiden
 
             - AMPA
-            - VIS
             - BAM
-            - meta8
-            - Metola-S-ESA
             - Dchdzn
             - meta4
+            - meta8
+            - Metola-S-ESA
+            - VIS
         
         .. tab-item:: Organische verbindingen
-
-            - Tri
-            - Per
+            
             - CN
-                
-        .. tab-item:: Pesticiden actieve stoffen
+            - Per
+            - Tri
 
-            - metola-S
-            - Simaz
-            - Chlortol
-            - Isoprot
-            - Glyfos
+        .. tab-item:: Pesticiden actieve stoffen
+            - 245t     
+            - 24d
+            - 24db
+            - 5ClFenol
+            - Ala
             - Atraz
-            - Linur
             - Bentaz
-            - Diur
-            - Terbu
+            - brom
+            - Carben
+            - Carbet
             - Chloridaz
-            - fluopicolide
+            - Chlortol
+            - Clproph
+            - Cyana
+            - Dicam
+            - Dichlorpr
+            - Diur
+            - Ethofum
+            - Fenoprop
             - flufe
+            - fluopicolide
+            - Fluroxypyr
+            - Glyfos
+            - Hexaz
             - Imida
+            - Isoprot
+            - Linur
+            - Linur_mono
+            - mcpa
+            - mcpb
+            - Mecopr
             - Mesotri
+            - Metami
+            - Metaza
+            - Methabenz
+            - Metobro
+            - metola-S
+            - Metox
+            - Prometr
+            - PropaCl
+            - Propan
+            - Propaz
+            - Sebu
+            - Simaz
+            - Terbu
+            - Terbutryn
             - trichlorpyr
             - Triflox
-            - Fluroxypyr
-            - Metox
-            - Hexaz
-            - Metobro
-            - 245t
-            - Propaz
-            - Prometr
-            - Sebu
-            - mcpa
-            - Dichlorpr
-            - Metaza
-            - Carben
-            - PropaCl
-            - Mecopr
-            - mcpb
-            - Linur_mono
-            - Metami
-            - Methabenz
-            - Terbutryn
-            - Cyana
-            - Ethofum
-            - Clproph
-            - Carbet
-            - 24db
-            - 24d
-            - Fenoprop
-            - 5ClFenol
-            - Propan
-            - Ala
-            - Dicam
-            - brom
         
         .. tab-item:: Relevante metabolieten van pesticiden
 
             - atr_des
-            - DMS
-            - chazr
-            - meta11
-            - meta9
             - Atr_desisoprop
+            - chazr
+            - DMS
+            - meta9
+            - meta11
             - Terbu_des
         
         .. tab-item:: Zware metalen
-
-            - Pb
+        
             - Al
-            - Hg
-            - Cd
-            - Cu
-            - Co
-            - Ni
-            - Cr
             - As
-            - Zn
             - B
             - Ba
-            - Ti
-            - Sn
+            - Cd
+            - Co
+            - Cr
+            - Cu
+            - Hg
+            - Ni
+            - Pb
             - Sb
+            - Sn
+            - Ti
+            - Zn
+
 
 Soil-data
 ---------
