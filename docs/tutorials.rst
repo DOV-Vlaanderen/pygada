@@ -14,7 +14,7 @@ you can run yourself.
 To run these interactively online without installation, use the following binder link:
 
 .. image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/DOV-Vlaanderen/pygada.git/main?urlpath=https%3A%2F%2Fgithub.com%2FDOV-Vlaanderen%2Fpygada%2Ftree%2Fmain%2Fdocs%2Fnotebooks
+   :target: https://mybinder.org/v2/gh/dov-vlaanderen/pygada/master?filepath=docs%2Fnotebooks
 
 
 
