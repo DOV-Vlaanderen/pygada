@@ -13,9 +13,7 @@ There are two data-input options for pygada.
 .. _pydov: https://pydov.readthedocs.io/en/stable/
 
 | In the first case, the scripts to download soil- and groundwaterdata from DOV is integrated in pygada.
-| As user you only have to define the parameter(s) and the bounding box. 
-
-A link-  :ref:`Bounding box`
+| As user you only have to define the parameter(s) and the :ref:`Bounding box`.
 
 Groundwater-pydov
 -----------------
