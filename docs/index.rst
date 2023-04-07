@@ -31,6 +31,7 @@ Contents:
    :maxdepth: 1
 
    installation
+   tutorials
    
 .. toctree::
    :caption: User guide
