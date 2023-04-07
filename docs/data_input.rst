@@ -6,8 +6,8 @@ Data-input
 
 There are two data-input options for pygada.
 
-    1. You can download data from the `subsoil database of Flanders`_ (DOV) with the use of `pydov`_ . 
-    2. You can use your own dataset.
+- You can download data from the `subsoil database of Flanders`_ (DOV) with the use of `pydov`_ . 
+- You can use your own dataset.
 
 .. _subsoil database of Flanders: https://www.dov.vlaanderen.be/
 .. _pydov: https://pydov.readthedocs.io/en/stable/
