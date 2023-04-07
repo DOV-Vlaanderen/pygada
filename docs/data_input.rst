@@ -1,8 +1,21 @@
+.. _data_input:
+
 ==========
 Data-input
 ==========
 
-Groundwater-data
+There are two data-input options for pygada.
+
+    1. You can download data from the `subsoil database of Flanders`_ (DOV) with the use of `pydov`_ . 
+    2. You can use your own dataset.
+
+.. _subsoil database of Flanders: https://www.dov.vlaanderen.be/
+.. _pydov: https://pydov.readthedocs.io/en/stable/
+
+| In the first case, the scripts to download soil- and groundwaterdata from DOV is integrated in pygada.
+| As user you only have to define the parameter(s) and the bounding box. 
+
+Groundwater-pydov
 ----------------
 
 .. dropdown:: Possible parameters
@@ -213,11 +226,11 @@ Groundwater-data
             - Zn
 
 
-Soil-data
+Soil-pydov
 ---------
 
-PFAS-data
+PFAS-pydov
 ---------
 
-Personal datset
+Personal dataset
 ---------------
