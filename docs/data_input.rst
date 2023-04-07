@@ -16,7 +16,7 @@ There are two data-input options for pygada.
 | As user you only have to define the parameter(s) and the bounding box. 
 
 Groundwater-pydov
-----------------
+-----------------
 
 .. dropdown:: Possible parameters
     :animate: fade-in
@@ -229,10 +229,10 @@ Groundwater-pydov
 
 
 Soil-pydov
----------
+----------
 
 PFAS-pydov
----------
+----------
 
 Personal dataset
----------------
+----------------
