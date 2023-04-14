@@ -237,7 +237,80 @@ Soil-pydov
     From the following parameters groundwater data can be downloaded.
     
     .. tab-set::
-        
+
+        .. tab-item:: Bodem_biologisch
+
+            - Beworteling diepte
+            - Diepte van de wormgangen
+
+        .. tab-item:: Bodem_boring
+
+            - Diameter van de boor
+            - Techniek van de boring
+            - Type van de boring
+
+        .. tab-item:: Bodem_chemisch
+
+            - Anorganische C - percentage
+            - Cadmium
+            - Calciumcarbonaatgehalte
+            - CEC totaal
+            - C/N ratio
+            - fe2o3
+            - Kalkgehalte_beschrijvend
+            - Oxalaat extraheerbaar aluminium
+            - Oxalaat extraheerbaar ijzer
+            - Organische C - percentage
+            - pH CaCl2
+            - pH H2O
+            - pH KCl
+            - Sorptie minerale fractie
+            - Sorptie organische fractie
+            - Sorptie totaal
+            - Sorptie totaal HCL
+            - Sorptie totaal NH4Cl
+            - Sorptie verzadigingsgraad
+            - Totale C - percentage
+            - Totale N - percentage
+            - Uitwisselbare calcium
+            - Uitwisselbare magnesium
+            - Uitwisselbare K
+
+        .. tab-item:: Bodem_fysisch_structuur
+
+            - Bulkdensiteit bodem totaal - gemeten
+            - Consistentie
+            - Consistentie - kleverigheid
+            - Consistentie - plasticiteit
+            - Horizontstructuur - gradatie - aardewerk
+            - Horizontstructuur - gradatie - FAO
+            - Horizontstructuur - grootteklasse - aardewerk
+            - Horizontstructuur - grootteklasse - FAO
+            - Horizontstructuur - type - aardewerk
+            - Horizontstructuur - type - FAO
+            - Mineralen - andere
+            - Mineralen - glauconiet
+            - Mineralen - kwarts
+            - Mineralen - mica glimm
+            - Mineralen - opaal
+            - Mineralen - rk
+            - Mineralen - schisten
+            - Mineralen - veldspaat
+
+        .. tab-item:: Bodem_fysisch_textuur
+
+            - Mediaan van de textuurfracties
+            - Textuur - granulometrie - klasse bodemkartering
+            - Textuur - granulometrisch - gedetailleerd
+            - Textuur - granulometrisch - klassen bodemkartering met Zg
+            - Textuur - grove fractie (groter dan 2000 µm)
+            - Textuur - handmatig - fout groter dan 5%
+            - Textuur - handmatig - gedetailleerd
+            - Textuur - handmatig - klassen bodemkartering
+            - Textuur - percentage org. materiaal H2O2 30%
+            - Textuur - type zand
+            - Textuurfracties
+
         .. tab-item:: Bodem_fysisch_vocht
         
             - Diepte (grond)watertafel t.o.v. maaiveld
@@ -257,9 +330,90 @@ Soil-pydov
             - Ksat
             - Reductie in horizont(ja/nee)
             - Roest - kleur omschrijving
-            - Vochtgehalte luchtdroge grond
             - Vochtgehalte gradatie
             - Vochtgehalte gradatie: nat, vochtig, droog
+            - Vochtgehalte luchtdroge grond
+
+        .. tab-item:: Bodem_kleur
+
+            - Kleur omschrijving
+            - Kleur volgens Munsell - CHROMA (kleur1)
+            - Kleur volgens Munsell - CHROMA (kleur2)
+            - Kleur volgens Munsell - CHROMA (kleur3)
+            - Kleur volgens Munsell - HUE_getal (kleur1)
+            - Kleur volgens Munsell - HUE_getal (kleur2)
+            - Kleur volgens Munsell - HUE_getal (kleur3)
+            - Kleur volgens Munsell - kleurcode
+            - Kleur volgens Munsell - VALUE (kleur1)
+            - Kleur volgens Munsell - VALUE (kleur2)
+            - Kleur volgens Munsell - VALUE (kleur3)
+            - Kleur volgens Munsell - HUE_letters (kleur1)
+            - Kleur volgens Munsell - HUE_letters (kleur2)
+            - Kleur volgens Munsell - HUE_letters (kleur3)
+
+        .. tab-item:: Bodem_terrein
+
+            - Aard van de stenige bijmenging
+            - Bodemgebruik
+            - Bodemgebruik Aardewerk
+            - Coördinaat - Bonne - E
+            - Coördinaat - Bonne - N
+            - Coördinaat - Bonne - W
+            - Geologische aard - afzettingswijze laag 1
+            - Geologische aard - afzettingswijze laag 2
+            - Geologische aard - afzettingswijze laag 3
+            - Geologische aard - afzettingswijze laag 4
+            - Geologische aard - andere kenmerken laag 1
+            - Geologische aard - andere kenmerken laag 2
+            - Geologische aard - andere kenmerken laag 3
+            - Geologische aard - andere kenmerken laag 4
+            - Geologische aard - bovenliggend laag 1
+            - Geologische aard - bovenliggend laag 2
+            - Geologische aard - bovenliggend laag 3
+            - Geologische aard - bovenliggend laag 4
+            - Geologische aard - bovenliggend laag 5
+            - Geologische aard - bovenliggend laag 6
+            - Geologische aard - lithologie laag 1
+            - Geologische aard - lithologie laag 2
+            - Geologische aard - lithologie laag 3
+            - Geologische aard - lithologie laag 4
+            - Geologische aard - lithologie laag 5
+            - Geologische aard - lithologie laag 6
+            - Geologische aard - tijdperk laag 1
+            - Geologische aard - tijdperk laag 2
+            - Geologische aard - tijdperk laag 3
+            - Geologische aard - tijdperk laag 4
+            - Geologische aard - tijdperk laag 5
+            - Geologische aard - tijdperk laag 6
+            - Reliëf - aard
+            - Reliëf - expositie
+            - Reliëf - helling enkelvoudig
+            - Reliëf - helling meervoudig
+            - Reliëf - geschatte lengte
+            - Reliëf - landvorm
+            - Reliëf - microreliëf
+            - Reliëf - situering
+            - Reliëf - vorm van de helling
+            - Stenen
+            - Vegetatie
+            - Weersomstandigheden
+
+        .. tab-item:: Bodemanalyse parameters
+
+            - vegetatie
+
+        .. tab-item:: Instrument parameters
+
+            - Temperatuur
+            - Volumetrisch vochtgehalte
+
+
+
+
+
+
+
+
 
 PFAS-pydov
 ----------
