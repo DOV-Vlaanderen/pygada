@@ -231,6 +231,36 @@ Groundwater-pydov
 Soil-pydov
 ----------
 
+.. dropdown:: Possible parameters
+    :animate: fade-in
+    
+    From the following parameters groundwater data can be downloaded.
+    
+    .. tab-set::
+        
+        .. tab-item:: Bodem_fysisch_vocht
+        
+            - Diepte (grond)watertafel t.o.v. maaiveld
+            - Drainage Aardewerk-doorlaatbaarheid
+            - Drainage Aardewerk - interne drainage
+            - Drainage Aardewerk - klasse
+            - Drainage Aardewerk - oppervlakkige drainage
+            - Gley roest - aantal
+            - Gley roest - begrenzing
+            - Gley roest - contrast
+            - Gley roest - grootte
+            - Gley roest - kleur volgens Munsell - CHROMA
+            - Gley roest - kleur volgens Munsell - HUE_getal
+            - Gley roest - kleur volgens Munsell - HUE_letters
+            - Gley roest - kleur volgens Munsell - VALUE
+            - Gley roest - vorm
+            - Ksat
+            - Reductie in horizont(ja/nee)
+            - Roest - kleur omschrijving
+            - Vochtgehalte luchtdroge grond
+            - Vochtgehalte gradatie
+            - Vochtgehalte gradatie: nat, vochtig, droog
+
 PFAS-pydov
 ----------
 
