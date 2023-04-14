@@ -31,11 +31,14 @@ Contents:
    :maxdepth: 1
 
    installation
+   tutorials
    
 .. toctree::
    :caption: User guide
    :maxdepth: 1
-
+   
+   data_input
+   general
 
 .. toctree::
    :caption: Developer guide

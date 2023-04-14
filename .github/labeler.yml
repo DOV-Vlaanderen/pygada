@@ -1,0 +1,23 @@
+documentation:
+- docs/*
+
+notebooks:
+- notebooks/*
+
+tests:
+- tests/*
+
+data input:
+- pygada/data_input/*
+
+data filtering:
+-pygada/data_filtering/*
+
+EDA:
+-pygada/explorative_data_analysis/*
+
+interpolation:
+-pygada/kriging_interpolation/*
+
+repo:
+- '*'
