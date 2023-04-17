@@ -4,6 +4,7 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dov-vlaanderen/pygada/main?filepath=docs%2Fnotebooks)
 
 <a href="https://github.com/DOV-Vlaanderen/pygada/stargazers"><img src="https://img.shields.io/github/stars/DOV-Vlaanderen/pygada" alt="Stars Badge"/></a>
+<a href="https://github.com/DOV-Vlaanderen/pygada/watchers"><img src="https://img.shields.io/github/watchers/DOV-Vlaanderen/pygada" alt="Watchers Badge"/></a>
 <a href="https://github.com/DOV-Vlaanderen/pygada/network/members"><img src="https://img.shields.io/github/forks/DOV-Vlaanderen/pygada" alt="Forks Badge"/></a>
 <a href="https://github.com/DOV-Vlaanderen/pygada/pulls"><img src="https://img.shields.io/github/issues-pr/DOV-Vlaanderen/pygada" alt="Pull Requests Badge"/></a>
 <a href="https://github.com/DOV-Vlaanderen/pygada/issues"><img src="https://img.shields.io/github/issues/DOV-Vlaanderen/pygada" alt="Issues Badge"/></a>
