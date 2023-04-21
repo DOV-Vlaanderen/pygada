@@ -15,7 +15,7 @@ have the development environment setup:
 
 .. code-block:: console
 
-    $ git clone git://github.com/YOUR-GITHUB-USERNAME/pygada
+    $ git clone https://github.com/YOUR-GITHUB-USERNAME/pygada
 
 - Create a development environment, for example using `conda`_:
 
