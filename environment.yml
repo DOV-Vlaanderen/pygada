@@ -18,5 +18,5 @@ dependencies:
 - scipy=1.9.1
 - seaborn=0.11.2
 - pip:
-  - pydov==2.2.3
+  - pydov[proxy]>=3.0.0
   - pysgems==1.2.3
