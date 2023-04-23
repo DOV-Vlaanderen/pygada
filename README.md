@@ -2,10 +2,9 @@
 [![Documentation Status](https://readthedocs.org/projects/pygada/badge/?version=latest)](https://pygada.readthedocs.io/en/latest/?badge=latest)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dov-vlaanderen/pygada/main?filepath=docs%2Fnotebooks)
-
 ![GitHub top language](https://img.shields.io/github/languages/top/DOV-Vlaanderen/pygada)
-<a href="https://github.com/DOV-Vlaanderen/pygada/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DOV-Vlaanderen/pygada?color=2b9348" alt="License Badge"/></a>
 ![GitHub repo size](https://img.shields.io/github/repo-size/DOV-Vlaanderen/pygada)
+<a href="https://github.com/DOV-Vlaanderen/pygada/blob/master/LICENSE"><img src="https://img.shields.io/github/license/DOV-Vlaanderen/pygada?color=2b9348" alt="License Badge"/></a>
 
 <a href="https://github.com/DOV-Vlaanderen/pygada/stargazers"><img src="https://img.shields.io/github/stars/DOV-Vlaanderen/pygada" alt="Stars Badge"/></a>
 <a href="https://github.com/DOV-Vlaanderen/pygada/watchers"><img src="https://img.shields.io/github/watchers/DOV-Vlaanderen/pygada" alt="Watchers Badge"/></a>
