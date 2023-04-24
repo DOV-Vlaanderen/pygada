@@ -1,12 +1,11 @@
 import os
-
 import pandas as pd
+from loguru import logger
+from owslib.fes2 import PropertyIsEqualTo, Or
 from pydov.search.grondwatermonster import GrondwaterMonsterSearch
 from pydov.search.grondwaterfilter import GrondwaterFilterSearch
 from pydov.util.location import Within, Box
 from pydov.util.query import Join
-from loguru import logger
-from owslib.fes2 import PropertyIsEqualTo, Or
 
 
 def parameter_group(parameter):
