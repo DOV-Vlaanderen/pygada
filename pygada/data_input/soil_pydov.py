@@ -49,4 +49,5 @@ def soil_request(parameter, bounding_box):
 
     return data
 
+
 # data = soil_request(['Anorganische C - percentage', 'Organische C - percentage'], 'flanders')
