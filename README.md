@@ -26,6 +26,18 @@ To get started, see the documentation at https://pygada.readthedocs.io/en/latest
 
 Please note that using DOV data with pygada is governed by the same [disclaimer](https://www.dov.vlaanderen.be/page/disclaimer) that applies to the other DOV services. Be sure to consult it when using DOV data with pygada.
 
+## Installation
+
+You can install `pygada` stable using pip:
+
+```shell script
+pip install pygada
+```
+
+Or clone the [git repository](https://github.com/DOV-Vlaanderen/pygada) and install with `python setup.py install` to get the latest snapshot from the master branch.
+
+To contribute to the code, check out the [installation instructions](https://pygada.readthedocs.io/en/stable/installation.html) and the [development guidelines](https://pydov.readthedocs.io/en/stable/development.html).
+
 ## Quick start
 
 ## Documentation
