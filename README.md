@@ -34,7 +34,7 @@ You can install `pygada` stable using pip:
 pip install pygada
 ```
 
-Or clone the [git repository](https://github.com/DOV-Vlaanderen/pygada) and install with `python setup.py install` to get the latest snapshot from the master branch.
+<!--Or clone the [git repository](https://github.com/DOV-Vlaanderen/pygada) and install with `python setup.py install` to get the latest snapshot from the master branch.--> 
 
 To contribute to the code, check out the [installation instructions](https://pygada.readthedocs.io/en/stable/installation.html) and the [development guidelines](https://pydov.readthedocs.io/en/stable/development.html).
 
