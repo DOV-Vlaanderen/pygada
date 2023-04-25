@@ -22,5 +22,6 @@ To run these interactively online without installation, use the following binder
    :maxdepth: 1
    
    notebooks/data_input/groundwater_pydov.ipynb
+   notebooks/data_input/soil_pydov.ipynb
 
 
