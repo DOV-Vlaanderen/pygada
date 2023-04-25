@@ -27,7 +27,7 @@ def soil_request(parameter, bounding_box):
         upperrightx = 270000
         upperrighty = 250000
     else:
-        bblist = bounding_box.split('-')
+        bblist = bounding_box.split(',')
         lowerleftx = int(bblist[0])
         lowerlefty = int(bblist[1])
         upperrightx = int(bblist[2])
