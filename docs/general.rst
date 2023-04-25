@@ -13,7 +13,7 @@ Bounding box
 
 .. code-block:: console
 
-  'LowerLeftX-LowerLeftY-UpperRightX-UpperRightY'
+  'LowerLeftX,LowerLeftY,UpperRightX,UpperRightY'
   
 | If you want to have data from entire Flanders you can use the following as input for the bounding box:
 
