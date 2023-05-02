@@ -1,3 +1,4 @@
+from enum import Enum
 import pandas as pd
 import pydov
 from pydov.search.grondwaterfilter import GrondwaterFilterSearch
@@ -14,13 +15,16 @@ bbox_flanders = Box(15000, 150000, 270000, 250000)
 
 class ParameterGroup(object):
 
+    class Type(Enum):
+        SOIL = 'B'
+        GROUND = 'G'
+        WATER = 'W'
     def __init__(self, grouptype):
         """Initialise a ParameterGroup object for a given group type.
 
         Parameters
         ----------
-        parametergrouptype : str
-            One of 'B' for soil, 'G' for ground or 'W' for water.
+        parametergrouptype : ParameterGroup.Type
         """
         self.grouptype = grouptype
         self._parameter_groups = self._update_parameter_groups()
@@ -45,7 +49,7 @@ class ParameterGroup(object):
         pool = LocalSessionThreadPool()
 
         for parametergroup in parametergroups:
-            if parametergroup['groepType'] == self.grouptype:
+            if parametergroup['groepType'] == grouptype.value:
                 pool.execute(get_parameters, (parametergroup['code'],))
 
         for r in pool.join():
@@ -138,7 +142,7 @@ class GrondwaterMonsterParameterGroupFilter(OgcExpression):
         super(GrondwaterMonsterParameterGroupFilter, self).__init__()
 
         self.parameters = parameters
-        self.parameter_group = ParameterGroup('W')
+        self.parameter_group = ParameterGroup(ParameterGroup.Type.WATER)
 
         self.parametergroup_field_mapping = {
             '1': 'kationen',
