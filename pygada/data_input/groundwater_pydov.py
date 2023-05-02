@@ -177,7 +177,8 @@ class GrondwaterMonsterParameterGroupFilter(OgcExpression):
         ))
 
     def toXML(self):
-        """Return the XML representation of the PropertyInList query.
+        """Return the XML representation of the
+        GrondwaterMonsterParameterGroupFilter query.
 
         Returns
         -------
