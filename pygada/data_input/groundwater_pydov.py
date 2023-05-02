@@ -19,6 +19,9 @@ class ParameterGroup(object):
         SOIL = 'B'
         GROUND = 'G'
         WATER = 'W'
+
+    _parameter_groups = dict()
+
     def __init__(self, grouptype):
         """Initialise a ParameterGroup object for a given group type.
 
@@ -27,9 +30,13 @@ class ParameterGroup(object):
         parametergrouptype : ParameterGroup.Type
         """
         self.grouptype = grouptype
-        self._parameter_groups = self._update_parameter_groups()
+        self._update_parameter_groups(self.grouptype)
 
-    def _update_parameter_groups(self):
+    @classmethod
+    def _update_parameter_groups(cls, grouptype):
+        if grouptype in cls._parameter_groups:
+            return
+
         parametergroups = pydov.session.get(
             'https://services.dov.vlaanderen.be/dovkernserver/monster/'
             'codetabellen/parametergroep'
@@ -60,12 +67,11 @@ class ParameterGroup(object):
             if worker_result is not None:
                 parameters.extend(worker_result)
 
-        return [
+        cls._parameter_groups[grouptype] = [
             {'parameter': p['korteNaam'],
              'description': p['beschrijving'],
              'group': p['parametergroep']['beschrijving'],
-             'groupcode': p['parametergroep']['code'],
-             'grouptype': p['parametergroep']['groepType']}
+             'groupcode': p['parametergroep']['code']}
             for p in parameters
         ]
 
@@ -83,7 +89,7 @@ class ParameterGroup(object):
             List of unique parametergroups for the given parameters.
         """
         return list(set(
-            p['group'] for p in self._parameter_groups
+            p['group'] for p in self._parameter_groups[self.grouptype]
             if p['parameter'] in parameters
         ))
 
@@ -102,7 +108,7 @@ class ParameterGroup(object):
             List of unique parametergroup codes for the given parameters.
         """
         return list(set(
-            p['groupcode'] for p in self._parameter_groups
+            p['groupcode'] for p in self._parameter_groups[self.grouptype]
             if p['parameter'] in parameters
         ))
 
@@ -121,7 +127,7 @@ class ParameterGroup(object):
             List of unique parameter names for the given parameter groups.
         """
         return list(set(
-            p['parameter'] for p in self._parameter_groups
+            p['parameter'] for p in self._parameter_groups[self.grouptype]
             if p['group'] in parametergroups
         ))
 
