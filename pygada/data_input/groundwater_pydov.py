@@ -1,129 +1,240 @@
-import os
-
+from enum import Enum
 import pandas as pd
-from pydov.search.grondwatermonster import GrondwaterMonsterSearch
+import pydov
 from pydov.search.grondwaterfilter import GrondwaterFilterSearch
+from pydov.types.grondwatermonster import GrondwaterMonster
 from pydov.util.location import Within, Box
+from pydov.util.net import LocalSessionThreadPool, SessionFactory
+from pydov.search.grondwatermonster import GrondwaterMonsterSearch
+from owslib.fes2 import OgcExpression, Or, PropertyIsEqualTo, And
+
 from pydov.util.query import Join
-from loguru import logger
-from owslib.fes2 import PropertyIsEqualTo, Or
+
+bbox_flanders = Box(15000, 150000, 270000, 250000)
 
 
-def parameter_group(parameter):
-    """ Define the parameter group based on the parameter. The parameter group will then be used to query on.
-    This will significantly reduce the download time.
+class ParameterGroup(object):
 
-    Parameters
-    ----------
-    parameter : list
-        A list with the user-defined parameters.
+    class Type(Enum):
+        SOIL = 'B'
+        GROUND = 'G'
+        WATER = 'W'
 
-    Returns
-    -------
-    param_group : list[str]
-        A list with the occurring parameter groups, based on the parameters.
+    _parameter_groups = dict()
 
-    """
+    def __init__(self, grouptype):
+        """Initialise a ParameterGroup object for a given group type.
 
-    param_group = []
+        Parameters
+        ----------
+        parametergrouptype : ParameterGroup.Type
+        """
+        self.grouptype = grouptype
+        self._update_parameter_groups(self.grouptype)
 
-    kationen = ['K', 'NH4', 'Fe', 'Mn', 'Ca', 'Mg', 'Fe2+', 'Na', 'SomKAT', 'Fe(Tot.)', 'Sr', 'Fe3+']
-    anionen = ['HCO3', 'F', 'PO4', 'Cl', 'NO3', 'CO3', 'NO2', 'SO4', 'Br', 'SomAN', 'PO4(Tot.)', 'OH']
-    zware_metalen = ['Pb', 'Al', 'Hg', 'Cd', 'Cu', 'Co', 'Ni', 'Cr', 'As', 'Zn', 'B', 'Ba', 'Ti', 'Sn', 'Sb']
-    pesticiden_actieve_stoffen = ['metola-S', 'Simaz', 'Chlortol', 'Isoprot', 'Glyfos', 'Atraz', 'Linur', 'Bentaz',
-                                  'Diur', 'Terbu', 'Chloridaz', 'fluopicolide', 'flufe', 'Imida', 'Mesotri',
-                                  'trichlorpyr', 'Triflox', 'Fluroxypyr', 'Metox', 'Hexaz', 'Metobro', '245t',
-                                  'Propaz', 'Prometr', 'Sebu', 'mcpa', 'Dichlorpr', 'Metaza', 'Carben', 'PropaCl',
-                                  'Mecopr', 'mcpb', 'Linur_mono', 'Metami', 'Methabenz', 'Terbutryn', 'Cyana',
-                                  'Ethofum', 'Clproph', 'Carbet', '24db', '24d', 'Fenoprop', '5ClFenol', 'Propan',
-                                  'Ala', 'Dicam', 'brom']
-    pesticiden_relevante_metabolieten = ['atr_des', 'DMS', 'chazr', 'meta11', 'meta9', 'Atr_desisoprop', 'Terbu_des']
-    niet_relevante_metabolieten_van_pesticiden = ['AMPA', 'VIS', 'BAM', 'meta8', 'Metola-S-ESA', 'Dchdzn', 'meta4']
-    fysico_chemische_parameters = ['EC(Lab.)', 'T', 'EC', 'pH', 'TOC', 'O2', 'Eh°', 'pH(Lab.)', 'TDS', 'Temp.',
-                                   'EC(Veld)', 'pH(Veld)', 'droogrest', 'H(tot)', 'TAP', 'TAM', 'DOC']
-    organische_verbindingen = ['Tri', 'Per', 'CN']
-    chemisch_PFAS = ['PFOSA', 'PFECHS', '8:2 FTS', 'ADONA', 'PFOAbranched', 'EtPFOSA', 'PFTrDS', 'PFPeA', 'PFHxA',
-                     '8:2 FTUCA', 'PFTeDA', 'MePFOSA', 'PFDA', '8:2 diPAP', '6:2 FTS', 'PFOAtotal', 'PFNS', 'PFDoDS',
-                     'PFOSbranched', 'MePFOSAA', 'HFPO-DA', 'PFDoDA', 'PFBA', 'PFHxDA', '6:2 diPAP', 'PFOS', 'PFUnDA',
-                     'PFHpS', 'PFHxS', '6:2/8:2 diPAP', 'PFOA', 'P37DMOA', '9Cl-PF3ONS', '4:2 FTS', 'HPFHpA', 'PFHpA',
-                     'PFNA', '10:2 FTS', '4H-PFUnDA', 'PFUnDS', 'PFBS', 'PFODA', 'PFTrDA', 'PFDS', 'PFOStotal', 'PFPeS',
-                     'PFBSA', 'EtPFOSAA']
-    andere_parameters = ['%AfwijkBalans', 'P2O5', 'Si']
+    @classmethod
+    def _update_parameter_groups(cls, grouptype):
+        if grouptype in cls._parameter_groups:
+            return
 
-    parameter_groups = [kationen, anionen, zware_metalen, pesticiden_actieve_stoffen, pesticiden_relevante_metabolieten,
-                  niet_relevante_metabolieten_van_pesticiden, fysico_chemische_parameters, organische_verbindingen,
-                  chemisch_PFAS, andere_parameters]
+        parametergroups = pydov.session.get(
+            'https://services.dov.vlaanderen.be/dovkernserver/monster/'
+            'codetabellen/parametergroep'
+        ).json()
 
-    parameter_groups_str = ['kationen', 'anionen', 'zware_metalen', 'pesticiden_actieve_stoffen',
-                            'pesticiden_relevante_metabolieten', 'niet_relevante_metabolieten_van_pesticiden',
-                            'fysico_chemische_parameters', 'organische_verbindingen', 'chemisch_PFAS',
-                            'andere_parameters']
+        parameters = []
 
-    for i in parameter:
-        for j in parameter_groups:
-            if i in j:
-                param_group.append(parameter_groups_str[parameter_groups.index(j)])
-    param_group = list(set(param_group))
+        def get_parameters(parametergroup, session=None):
+            if session is None:
+                session = SessionFactory()
 
-    return param_group
+            return session.get(
+                f'https://services.dov.vlaanderen.be/dovkernserver/monster/'
+                f'codetabellen/groep/{parametergroup}/parameters'
+            ).json()
+
+        pool = LocalSessionThreadPool()
+
+        for parametergroup in parametergroups:
+            if parametergroup['groepType'] == grouptype.value:
+                pool.execute(get_parameters, (parametergroup['code'],))
+
+        for r in pool.join():
+            if r.get_error():
+                raise r.get_error()
+
+            worker_result = r.get_result()
+            if worker_result is not None:
+                parameters.extend(worker_result)
+
+        cls._parameter_groups[grouptype] = [
+            {'parameter': p['korteNaam'],
+             'description': p['beschrijving'],
+             'group': p['parametergroep']['beschrijving'],
+             'groupcode': p['parametergroep']['code']}
+            for p in parameters
+        ]
+
+    def get_parametergroups(self, parameters):
+        """Get a list of parametergroups based on a list of given parameters.
+
+        Parameters
+        ----------
+        parameters : list of str
+            List of parameter names.
+
+        Returns
+        -------
+        list of str
+            List of unique parametergroups for the given parameters.
+        """
+        return list(set(
+            p['group'] for p in self._parameter_groups[self.grouptype]
+            if p['parameter'] in parameters
+        ))
+
+    def get_parametergroups_codes(self, parameters):
+        """Get a list of parametergroup codes based on a list of given
+        parameters.
+
+        Parameters
+        ----------
+        parameters : list of str
+            List of parameter names.
+
+        Returns
+        -------
+        list of str
+            List of unique parametergroup codes for the given parameters.
+        """
+        return list(set(
+            p['groupcode'] for p in self._parameter_groups[self.grouptype]
+            if p['parameter'] in parameters
+        ))
+
+    def get_parameters(self, parametergroups):
+        """Get a list of parameter names based on a list of given
+        parametergroups.
+
+        Parameters
+        ----------
+        parametergroups : list of str
+            List of parameter groups.
+
+        Returns
+        -------
+        list of str
+            List of unique parameter names for the given parameter groups.
+        """
+        return list(set(
+            p['parameter'] for p in self._parameter_groups[self.grouptype]
+            if p['group'] in parametergroups
+        ))
 
 
-def groundwater_request(parameter, bounding_box):
-    """Download the groundwater monsters and filter data for the chosen parameter(s).
+class GrondwaterMonsterParameterGroupFilter(OgcExpression):
+    def __init__(self, parameters):
+        """Initialisation.
 
-    Parameters
-    ----------
-    parameter : list
-        A list with the user-defined parameters.
-    bounding_box : str
-        The coordinates of a bounding box.
+        Creates a new filter on parameter groups based on the given parameter
+        names. It will allow a first filtering of matching groundwater
+        samples, which then will need to be further filtered down on the client.
 
-    Returns
-    -------
-    data : dataframe
-        The groundwater data.
-    """
+        Parameters
+        ----------
+        parameters : list of str
+            List of parameter names to include in the query.
+        """
+        super(GrondwaterMonsterParameterGroupFilter, self).__init__()
 
-    if bounding_box == 'flanders':
-        lowerleftx = 15000
-        lowerlefty = 150000
-        upperrightx = 270000
-        upperrighty = 250000
-    else:
-        bblist = bounding_box.split(',')
-        lowerleftx = int(bblist[0])
-        lowerlefty = int(bblist[1])
-        upperrightx = int(bblist[2])
-        upperrighty = int(bblist[3])
-    bbox = Box(lowerleftx, lowerlefty, upperrightx, upperrighty)
+        self.parameters = parameters
+        self.parameter_group = ParameterGroup(ParameterGroup.Type.WATER)
 
-    gwmonster = GrondwaterMonsterSearch()
-    logger.info(f"Downloading the groundwater monsters data.")
-    param_group = parameter_group(parameter)
-    if len(param_group) > 1:
-        query = []
-        for i in param_group:
-            query.append(PropertyIsEqualTo(propertyname=i, literal='true'))
-        query = Or(query)
-    else:
-        query = PropertyIsEqualTo(propertyname=param_group[0], literal='true')
-    df = gwmonster.search(location=Within(bbox), query=query)
-    data = df[df.parameter.isin(parameter)]
-    data["datum_monstername"] = pd.to_datetime(data["datum_monstername"])
+        self.parametergroup_field_mapping = {
+            '1': 'kationen',
+            '2': 'anionen',
+            '3': 'zware_metalen',
+            '4': 'pesticiden_actieve_stoffen',
+            '12': 'pesticiden_relevante_metabolieten',
+            '13': 'niet_relevante_metabolieten_van_pesticiden',
+            '5': 'fysico_chemische_parameters',
+            '7': 'organische_verbindingen',
+            'GW_CHEM_PFAS': 'chemisch_PFAS'
+        }
 
-    gwfilter = GrondwaterFilterSearch()
-    logger.info(f"Downloading the corresponding groundwater filter data.")
-    filter_elements = gwfilter.search(query=Join(data, "pkey_filter"), return_fields=["pkey_filter", "aquifer_code",
-        "diepte_onderkant_filter", "lengte_filter"])
+        self.parametergroup_field_default = 'andere_parameters'
 
-    data = pd.merge(data, filter_elements)
+        fields = self._map_to_fields()
+        if len(fields) == 1:
+            self.query = PropertyIsEqualTo(fields[0], 'true')
+        else:
+            self.query = Or(
+                [PropertyIsEqualTo(field, 'true') for field in fields]
+            )
 
-    return data
+    def _map_to_fields(self):
+        parametergroups = self.parameter_group.get_parametergroups_codes(
+            self.parameters)
+
+        return list(set(
+            self.parametergroup_field_mapping.get(
+                pg, self.parametergroup_field_default)
+            for pg in parametergroups
+        ))
+
+    def toXML(self):
+        """Return the XML representation of the
+        GrondwaterMonsterParameterGroupFilter query.
+
+        Returns
+        -------
+        xml : etree.ElementTree
+            XML representation of the PropertyInList
+
+        """
+        return self.query.toXML()
 
 
-# df = groundwater_request(['As', 'Tri'], 'flanders')
-# path = os.getcwd()
-# df.to_csv(path+'/gw_data.csv', header=True, index=True, sep="\t", mode="a")
-# print(df)
+class GroundwaterRequest(GrondwaterMonsterSearch):
+    def __init__(self, parameters):
+        super().__init__(GrondwaterMonster)
 
-# todo, add extra filtering on query? f.e. specific years?
+        self.parameters = parameters
+        self.return_fields = None
+
+    def search(self, location=None, query=None, sort_by=None, max_features=None):
+        if query is not None:
+            query = And(
+                [GrondwaterMonsterParameterGroupFilter(parameters), query])
+        else:
+            query = GrondwaterMonsterParameterGroupFilter(parameters)
+
+        data = super().search(
+            location, query, sort_by, self.return_fields, max_features
+        )
+
+        data = data[data.parameter.isin(self.parameters)]
+        data["datum_monstername"] = pd.to_datetime(data["datum_monstername"])
+
+        gwfilter = GrondwaterFilterSearch()
+        filter_elements = gwfilter.search(
+            query=Join(data, "pkey_filter"),
+            return_fields=["pkey_filter", "aquifer_code",
+                           "diepte_onderkant_filter", "lengte_filter"]
+        )
+
+        data = pd.merge(data, filter_elements)
+        return data
+
+
+if __name__ == '__main__':
+    parameters = ['Fe', 'CO3']
+
+    gw_request = GroundwaterRequest(parameters)
+
+    data = gw_request.search(
+        location=Within(bbox_flanders),
+        max_features=10
+    )
+
+    print(data)
