@@ -13,7 +13,18 @@ There are two data-input options for pygada.
 .. _pydov: https://pydov.readthedocs.io/en/stable/
 
 | In the first case, the scripts to download soil- and groundwaterdata from DOV is integrated in pygada.
-| As user you only have to define the parameter(s) and the :ref:`Bounding box`.
+| As user you have to define the parameter(s) and can make use of the functionalities of pydov to query the data.
+| Checkout:
+- `Query on attribute properties`_
+- `Query on location`_
+- `Sorting`_
+- `Using limit`_
+
+.. _Query on attribute properties: https://pydov.readthedocs.io/en/stable/query_attribute.html
+.. _Query on location: https://pydov.readthedocs.io/en/stable/query_location.html
+.. _Sorting: https://pydov.readthedocs.io/en/stable/sort_limit.html
+.. _Using limit: https://pydov.readthedocs.io/en/stable/sort_limit.html
+location=None, query=None, sort_by=None, max_features=None
 
 Groundwater-pydov
 -----------------
