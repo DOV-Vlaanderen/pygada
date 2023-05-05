@@ -24,7 +24,6 @@ There are two data-input options for pygada.
 .. _Query on location: https://pydov.readthedocs.io/en/stable/query_location.html
 .. _Sorting: https://pydov.readthedocs.io/en/stable/sort_limit.html
 .. _Using limit: https://pydov.readthedocs.io/en/stable/sort_limit.html
-location=None, query=None, sort_by=None, max_features=None
 
 Groundwater-pydov
 -----------------
