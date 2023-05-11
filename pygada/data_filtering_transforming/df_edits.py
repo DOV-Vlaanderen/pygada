@@ -36,13 +36,10 @@ class FilterTransformData:
         unit = most_frequent(unique_units)
 
         if medium == 'groundwater':
-            df_conv = pd.DataFrame({'kg/l': [1, 0.001, 0.000001, 0.000000001, 0.000000000001],
-                                    'g/l': [1000, 1, 0.001, 0.000001, 0.000000001],
-                                    'mg/l': [1000000, 1000, 1, 0.001, 0.000001],
-                                    'µg/l': [1000000000, 1000000, 1000, 1, 0.001],
-                                    'ng/l': [1000000000000, 1000000000, 1000000, 1000, 1]},
-                                   index=['kg/l', 'g/l', 'mg/l', 'µg/l', 'ng/l'])
-        #elif medium == 'soil':
+            df_conv = pd.DataFrame({'mg/l': [1, 0.001, 0.000001],
+                                    'µg/l': [1000, 1, 0.001],
+                                    'ng/l': [1000000, 1000, 1]},
+                                   index=['mg/l', 'µg/l', 'ng/l'])
 
         for i, j in [('value', unit)]:
             df[i] = df[i]*df['unit'].map(df_conv[j])
