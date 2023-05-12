@@ -18,11 +18,19 @@ class FilterTransformData:
         if medium == 'groundwater':
             df = df.rename(
                 columns={'pkey_grondwatermonster': 'index', 'datum_monstername': 'date', 'waarde': 'value', 'eenheid': 'unit',
-                         'diepte_onderkant_filter': 'bottom', 'diepte_bovenkant_filter': 'top'})
+                         'diepte_onderkant_filter': 'bottom', 'diepte_bovenkant_filter': 'top', 'veld_labo': 'field_lab'})
         elif medium == 'soil':
             df = df.rename(
                 columns={'pkey_bodemobservatie': 'index', 'observatie': 'date', 'waarde': 'value', 'eenheid': 'unit',
-                         'diepte_tot_cm': 'bottom', 'diepte_van_cm': 'top'})
+                         'diepte_tot_cm': 'bottom', 'diepte_van_cm': 'top', 'veld_labo': 'field_lab'})
+
+        return df
+
+    def change_depth_units(self, df, medium):
+
+        if medium == 'soil':
+            df['top'] = df['top']/100
+            df['bottom'] = df['bottom'] / 100
 
         return df
 
@@ -47,7 +55,16 @@ class FilterTransformData:
 
         return df
 
+    def check_date(self, df):
+        df['date'] = pd.to_datetime(df['date'])
 
+        return df
+
+#
+#df_gw = pd.read_csv('C:/Users/vandekgu/PycharmProjects/pygada/pygada/test_data/results/gw_test_data.csv')
+#df_soil = pd.read_csv('C:/Users/vandekgu/PycharmProjects/pygada/pygada/test_data/results/soil_test_data.csv')
+
+"""
 if __name__ == '__main__':
     df = pd.read_csv('C:/Users/vandekgu/PycharmProjects/pygada/pygada/test_data/results/data_as_fe_0100.csv')
 
@@ -58,3 +75,22 @@ if __name__ == '__main__':
     df = ftd.check_units(df, 'groundwater')
 
     df.to_csv('C:/Users/vandekgu/PycharmProjects/pygada/pygada/test_data/results/data_as_fe_0100_2.csv')
+"""
+"""
+if __name__ == '__main__':
+    ftd = FilterTransformData()
+    df_gw = ftd.change_df_col_names(df_gw, 'groundwater')
+    df_soil = ftd.change_df_col_names(df_soil, 'soil')
+    print(df_gw['date'])
+    df_gw = ftd.check_date(df_gw)
+
+    print(df_gw['date'])
+"""
+"""
+if __name__ == '__main__':
+    ftd = FilterTransformData()
+    df_soil = ftd.change_df_col_names(df_soil, 'soil')
+    print(df_soil['top'])
+    df_gw = ftd.change_depth_units(df_soil, 'soil')
+    print(df_soil['top'])
+"""

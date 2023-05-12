@@ -237,4 +237,6 @@ if __name__ == '__main__':
         max_features=10
     )
 
-    print(data)
+    #print(data)
+
+    data.to_csv('C:/Users/vandekgu/PycharmProjects/pygada/pygada/test_data/results/gw_test_data.csv')
