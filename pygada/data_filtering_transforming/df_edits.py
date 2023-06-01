@@ -95,6 +95,7 @@ if __name__ == '__main__':
     print(df_soil['top'])
 """
 
+"""
 if __name__ == '__main__':
     df = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/PFAS/groundwater_VMM.csv', sep=';')
 
@@ -105,4 +106,4 @@ if __name__ == '__main__':
     df = ftd.check_units(df, 'groundwater')
     df = ftd.check_date(df)
 
-    df.to_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
+    df.to_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')"""
