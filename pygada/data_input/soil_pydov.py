@@ -1,52 +1,53 @@
-import pandas as pd
-from pydov.search.bodemobservatie import BodemobservatieSearch
+from pydov.types.bodemobservatie import Bodemobservatie
 from pydov.util.location import Within, Box
-from loguru import logger
-from owslib.fes2 import PropertyIsEqualTo, Or
+from pydov.util.query import PropertyInList
+from pydov.search.bodemobservatie import BodemobservatieSearch
+from owslib.fes2 import And
+
+bbox_flanders = Box(15000, 150000, 270000, 250000)
 
 
-def soil_request(parameter, bounding_box):
-    """Download the soil observations data for the chosen parameter(s).
+class ParameterInList(PropertyInList):
+    def __init__(self, parameters):
+        """Initialisation.
 
         Parameters
         ----------
-        parameter : list[str]
-            A list with the user-defined parameters.
-        bounding_box : str
-            The coordinates of a bounding box.
-
-        Returns
-        -------
-        data : dataframe
-            The groundwater data.
+        parameters : list of str
+            List of parameter names to include in the query.
         """
+        super().__init__('parameter', parameters)
 
-    if bounding_box == 'flanders':
-        lowerleftx = 15000
-        lowerlefty = 150000
-        upperrightx = 270000
-        upperrighty = 250000
-    else:
-        bblist = bounding_box.split(',')
-        lowerleftx = int(bblist[0])
-        lowerlefty = int(bblist[1])
-        upperrightx = int(bblist[2])
-        upperrighty = int(bblist[3])
-    bbox = Box(lowerleftx, lowerlefty, upperrightx, upperrighty)
 
-    bodemobservatie = BodemobservatieSearch()
-    logger.info(f"Downloading the soil observations data.")
+class SoilRequest(BodemobservatieSearch):
+    def __init__(self, parameters):
+        super().__init__(Bodemobservatie)
 
-    if len(parameter) > 1:
-        query = []
-        for i in parameter:
-            query.append(PropertyIsEqualTo(propertyname='parameter', literal=i))
-        query = Or(query)
-    else:
-        query = PropertyIsEqualTo(propertyname='parameter', literal=parameter[0])
-    df = bodemobservatie.search(location=Within(bbox), query=query)
-    data = pd.DataFrame(df)
+        self.parameters = parameters
+        self.return_fields = None
 
-    return data
+    def search(self, location=None, query=None, sort_by=None,
+               max_features=None):
+        if query is not None:
+            query = And(
+                [ParameterInList(self.parameters), query])
+        else:
+            query = ParameterInList(self.parameters)
 
-# data = soil_request(['Anorganische C - percentage', 'Organische C - percentage'], 'flanders')
+        return super().search(
+            location, query, sort_by, self.return_fields, max_features
+        )
+
+
+if __name__ == '__main__':
+
+    params = ['Mineralen - glauconiet']
+
+    soil_request = SoilRequest(params)
+
+    data = soil_request.search(
+        location=Within(bbox_flanders),
+        max_features=10
+    )
+
+    print(data)
