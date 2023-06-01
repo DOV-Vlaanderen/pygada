@@ -9,7 +9,7 @@ class FilterTransformData:
 
     def top_filter(self, df):
 
-        df['diepte_bovenkant_filter'] = df['diepte_onderkant_filter']-df['lengte_filter']
+        df['diepte_bovenkant_filter'] = df['diepte_onderkant_filter'].replace(',', '.', regex=True).astype(float)-df['lengte_filter'].replace(',', '.', regex=True).astype(float)
 
         return df
 
@@ -17,7 +17,7 @@ class FilterTransformData:
 
         if medium == 'groundwater':
             df = df.rename(
-                columns={'pkey_grondwatermonster': 'index', 'datum_monstername': 'date', 'waarde': 'value', 'eenheid': 'unit',
+                columns={'pkey_grondwatermonster': 'index', 'datum_monstername': 'date', 'datum': 'date', 'waarde': 'value', 'eenheid': 'unit',
                          'diepte_onderkant_filter': 'bottom', 'diepte_bovenkant_filter': 'top', 'veld_labo': 'field_lab'})
         elif medium == 'soil':
             df = df.rename(
@@ -94,3 +94,15 @@ if __name__ == '__main__':
     df_gw = ftd.change_depth_units(df_soil, 'soil')
     print(df_soil['top'])
 """
+
+if __name__ == '__main__':
+    df = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/PFAS/groundwater_VMM.csv', sep=';')
+
+    ftd = FilterTransformData()
+
+    df = ftd.top_filter(df)
+    df = ftd.change_df_col_names(df, 'groundwater')
+    df = ftd.check_units(df, 'groundwater')
+    df = ftd.check_date(df)
+
+    df.to_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
