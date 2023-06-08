@@ -1,11 +1,12 @@
 from highcharts_core.chart import Chart
 from matplotlib.cbook import boxplot_stats
 import pandas as pd
+import numpy as np
 
 
 class Highcharts:
 
-    def __init__(self, input_df, unit):
+    def __init__(self, input_df, unit=None):
 
         self.df = input_df
         self.unit = unit
@@ -88,6 +89,78 @@ class Highcharts:
         chart.add_series(*data)
 
         as_js_literal = chart.to_js_literal('./interactive_plots/rendering/boxplot.js')
+
+        return as_js_literal
+
+    def correlation_heatmap(self):
+
+        data_highcharts = []
+
+        columns = list(self.df.columns)
+        data = list(self.df[x].values.tolist() for x in columns)
+        for i in range(len(data)):
+            for j in range(len(data)):
+                data_highcharts.append([i, j, data[i][j]])
+
+        data = [{
+                "name": "Correlation",
+                "borderWidth": 1,
+                "data": data_highcharts,
+                "tooltip": {
+                    "headerFormat": '<em>Parameter {point.key}</em><br/>'
+                },
+                "type": 'heatmap',
+                "dataLabels": {
+                    "enabled": True,
+                }}
+        ]
+
+        options_kwargs = {
+            'title': {
+                'text': 'Correlation per parameter'
+            },
+            'legend': {
+                'align': 'right',
+                'layout': 'vertical',
+                'margin': 0,
+                'verticalAlign': 'top',
+                'y': 25,
+                'symbolHeight': 280,
+
+            },
+
+            'xAxis': {
+                'categories': columns,
+                'title': {
+                    'text': 'Parameter'
+                }
+            },
+
+            'yAxis': {
+                'categories': columns,
+                'title': {
+                    'text': f'Parameter'
+                },
+                'reversed': True
+            },
+            'colorAxis': {
+                'reversed': False,
+                'min': 0,
+                'max': 1,
+                'minColor': '#FFFFFF',
+                'maxColor': '#00C1FF',
+            },
+            'chart': {
+                'type': 'heatmap',
+                'marginTop': 40,
+                'marginBottom': 80,
+            },
+        }
+
+        chart = Chart(options=options_kwargs, container='correlation_heatmap')
+        chart.add_series(*data)
+
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/correlation_heatmap.js')
 
         return as_js_literal
 

@@ -27,7 +27,7 @@ def boxplots(inputdf, type=None, outputpath=None, save=False):
     logger.info(f"Plotting the box plot per parameter.")
 
     unit = inputdf['unit'].unique()[0]
-    df = inputdf[['index', 'parameter', 'value']]
+    df = inputdf[['index', 'parameter', 'value']]  # todo: check if index is correct
 
     if type == 'static':
         plt.figure(figsize=(20, 10))
