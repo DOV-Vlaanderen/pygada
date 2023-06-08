@@ -11,8 +11,14 @@ class CorrelationSD:
 
     def __init__(self, inputdf, type=None):
 
-        self.inputdf = inputdf
         self.type = type
+
+        df = inputdf[['index', 'parameter', 'value']]  # todo: check if index is correct
+        df = df.pivot(index='index', columns='parameter', values='value')
+        df = df[['PFOS', 'PFHxS', 'PFNA', 'PFOA']]
+        df = np.log(df[:]).replace(np.NINF, np.nan)  # todo: check if necessary
+
+        self.df = df
 
     def heatmap(self):
         """Create a correlation heatmap with every parameter that is in the dataset.
@@ -34,11 +40,6 @@ class CorrelationSD:
 
         logger.info(f"Start the correlation matrix of the dataset.")
 
-        df = self.inputdf[['index', 'parameter', 'value']]  # todo: check if index is correct
-        df = df.pivot(index='index', columns='parameter', values='value')
-        df = df[['PFOS', 'PFHxS', 'PFNA', 'PFOA']]
-        df = np.log(df[:]).replace(np.NINF, np.nan)  # todo: check if necessary
-
         df1_correlation = df.corr().round(2)
 
         if self.type == 'static':
@@ -58,7 +59,23 @@ class CorrelationSD:
             highcharts = Highcharts(df1_correlation)
             highcharts.correlation_heatmap()
 
+    def scatterplot(self):
+
+        if self.type == 'static':
+            scatter_matrix = pd.plotting.scatter_matrix(self.df, alpha=1, figsize=(10, 10))
+            plt.tight_layout()
+            plt.show()
+            #if save:
+            #    plt.savefig(f"{outputpath}/{parameter}_{transformation}_correlation_scatterplot_matrix.png")
+            plt.clf()
+
+        elif self.type == 'dynamic':
+            df = self.df.head(100)  # todo: plot not rendering with large amount of data.
+            highcharts = Highcharts(df)
+            highcharts.correlation_scatterplot()
+
+
 df = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
 
 correlation_analysis = CorrelationSD(df, type='dynamic')
-correlation_analysis.heatmap()
+correlation_analysis.scatterplot()

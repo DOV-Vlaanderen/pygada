@@ -164,6 +164,54 @@ class Highcharts:
 
         return as_js_literal
 
+    def correlation_scatterplot(self):
+
+        data_highcharts = []
+        columns = list(self.df.columns)
+
+        for i in range(len(columns) - 1):
+            for k in range(1, len(columns) - i):
+                scatter_data = []
+                for j in range(len(self.df)):
+                    scatter_data.append([self.df[columns[i]][j], self.df[columns[i + k]][j]])
+                data_highcharts.append(
+                    {"boostThreshold": 0, "name": f'{columns[i]}-{columns[i + k]}', "data": scatter_data, "type": 'scatter'})
+        options_kwargs = {
+
+            'title': {
+                'text': 'Scatterplot of parameters'
+            },
+
+            'legend': {
+                'enabled': True
+            },
+
+            'xAxis': {
+                'title': {
+                    'text': 'Experiment No.'
+                }
+            },
+
+            'yAxis': {
+                'title': {
+                    'text': 'Observations'
+                }
+            },
+            'chart': {
+                'type': 'scatter'
+            },
+            'boost': {
+                'useGPUTranslations': True,
+                'usePreAllocated': True,
+                'seriesThreshold': 0
+            },
+        }
+        chart = Chart(options=options_kwargs, container='correlation_scatterplot')
+        chart.add_series(*data_highcharts)
+
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/correlation_scatterplot.js')
+
+        return as_js_literal
 
 if __name__ == '__main__':
 
