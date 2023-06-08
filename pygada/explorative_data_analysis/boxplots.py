@@ -1,12 +1,9 @@
-import numpy as np
 import pandas as pd
-from highcharts_core.options.series.boxplot import BoxPlotSeries
 from loguru import logger
 from matplotlib import pyplot as plt
 import seaborn as sns
 # Import classes using precise module indications. For example:
-from highcharts_core import highcharts
-from interactive_plots.templates.highcharts import boxplot
+from pygada.explorative_data_analysis.interactive_plots.highcharts import Highcharts
 
 
 def boxplots(inputdf, type=None, outputpath=None, save=False):
@@ -30,9 +27,9 @@ def boxplots(inputdf, type=None, outputpath=None, save=False):
     logger.info(f"Plotting the box plot per parameter.")
 
     unit = inputdf['unit'].unique()[0]
-    df = inputdf[['parameter', 'value']]
+    df = inputdf[['index', 'parameter', 'value']]
 
-    if type == 'matplotlib':
+    if type == 'static':
         plt.figure(figsize=(20, 10))
         plt.xticks(fontsize=20)
         plt.yticks(fontsize=20)
@@ -40,7 +37,7 @@ def boxplots(inputdf, type=None, outputpath=None, save=False):
         plot.set(ylim=0.01)
         plot.set(yscale="log")
         plot.set_xlabel("Parameter", fontsize=20)
-        plot.set_ylabel(f"Value in log {unit}", fontsize=20)
+        plot.set_ylabel(f"Concentrations in log {unit}", fontsize=20)
         plt.xticks(rotation=90)
         plt.tight_layout()
         plt.show()
@@ -48,13 +45,12 @@ def boxplots(inputdf, type=None, outputpath=None, save=False):
             # plt.savefig(f"{outputpath}/boxplot_parameters.png")
         plt.clf()
 
-    elif type == 'highcharts':
-        df = df.pivot(columns='parameter', values='value')
+    elif type == 'dynamic':
+        df = df.pivot(index='index', columns='parameter', values='value')
         df = df.loc[:, df.columns.notna()]
-        boxplot(df)
+        highcharts = Highcharts(df, unit)
+        highcharts.boxplot()
 
 
 df2 = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
-boxplots(df2, 'highcharts')
-
-
+boxplots(df2, 'dynamic')
