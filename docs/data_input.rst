@@ -420,7 +420,7 @@ PFAS-pydov
     
     From the following mediums PFAS data can be downloaded.
     
-    .. tab-set::
+    .. tab-item::
 
         - all
         - biota
