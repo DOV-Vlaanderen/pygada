@@ -684,12 +684,11 @@ class RequestPFASdata:
         if save:
             path = os.getcwd()
             path1 = f"{path}/results"
-            if os.path.exists(path1):
-                path2 = f"{path}/results/metadata.json"
-                with open(path2, "w") as outfile:
-                    outfile.write(metadata)
-            else:
+            if not os.path.exists(path1):
                 os.mkdir(f"{path}/results")
+            path2 = f"{path}/results/metadata.json"
+            with open(path2, "w") as outfile:
+                outfile.write(metadata)
 
             with open(f"{path}/results/metadata.json") as metadata_file:
                 metadata = json.load(metadata_file)
@@ -782,9 +781,15 @@ class RequestPFASdata:
 
 
 if __name__ == '__main__':
-    medium = ['all']
-    location = Within(Box(15000, 150000, 270000, 250000))  # Bounding box Flanders
     rd = RequestPFASdata()
-    df = rd.main(medium, location=location, save=True)[0]
+
+    medium = ['all']
+    location = Within(Box(15000, 150000, 270000, 250000))
+
+    df = rd.main(
+        medium,
+        location=location,
+        save=True)[0]
+
     #print(df[0])
 
