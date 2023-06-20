@@ -70,7 +70,8 @@ class CorrelationSD:
             plt.clf()
 
         elif self.type == 'dynamic':
-            df = self.df.head(100)  # todo: plot not rendering with large amount of data.
+            df = self.df.dropna()
+            #df = self.df.head(50)  # todo: plot not rendering with large amount of data.
             highcharts = Highcharts(df)
             highcharts.correlation_scatterplot()
 

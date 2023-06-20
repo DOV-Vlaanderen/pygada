@@ -198,12 +198,7 @@ class Highcharts:
                 }
             },
             'chart': {
-                'type': 'scatter'
-            },
-            'boost': {
-                'useGPUTranslations': True,
-                'usePreAllocated': True,
-                'seriesThreshold': 0
+                'type': 'scatter',
             },
         }
         chart = Chart(options=options_kwargs, container='correlation_scatterplot')
