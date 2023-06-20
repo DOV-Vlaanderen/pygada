@@ -23,5 +23,5 @@ To run these interactively online without installation, use the following binder
    
    notebooks/data_input/groundwater_pydov.ipynb
    notebooks/data_input/soil_pydov.ipynb
-
+   https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/PFAS_concentrations_tutorial.ipynb
 
