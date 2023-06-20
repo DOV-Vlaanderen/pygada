@@ -18,7 +18,7 @@ To run these interactively online without installation, use the following binder
 
 
 
-.. toctree::
+.. toctree:: Data input
    :maxdepth: 1
    
    notebooks/data_input/groundwater_pydov.ipynb
