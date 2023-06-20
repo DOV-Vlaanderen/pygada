@@ -420,19 +420,18 @@ PFAS-pydov
     
     From the following mediums PFAS data can be downloaded.
     
-    .. tab-item::
+    - all
+    - biota
+    - effluent
+    - groundwater
+    - migration
+    - pure product
+    - rainwater
+    - soil
+    - soil water
+    - surface water
+    - waste water
 
-        - all
-        - biota
-        - effluent
-        - groundwater
-        - migration
-        - pure product
-        - rainwater
-        - soil
-        - soil water
-        - surface water
-        - waste water
 For more information check `the corresponding pydov documentation`_.
 
 .. _the corresponding pydov documentation: https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/README.md
