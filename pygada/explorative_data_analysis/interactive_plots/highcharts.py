@@ -1,4 +1,5 @@
 from highcharts_core.chart import Chart
+from highcharts_core.options.series.area import LineSeries
 from matplotlib.cbook import boxplot_stats
 import pandas as pd
 import numpy as np
@@ -213,6 +214,46 @@ class Highcharts:
         as_js_literal = chart.to_js_literal('./interactive_plots/rendering/correlation_scatterplot.js')
 
         return as_js_literal
+
+    def count_datapoints_timeseries(self):
+
+        series = [LineSeries.from_pandas(self.df, property_map={'y': 'count', 'x': 'date'},
+                                         series_kwargs={'name': 'VMM groundwater'})]
+
+        options_kwargs = {
+            'chart': {
+                'zoomType': 'x',
+                'type': 'area'
+            },
+            'title': {
+                'text': 'Count of datapoints'
+            },
+
+            'legend': {
+                'enabled': True
+            },
+
+            'xAxis': {
+                'type': 'datetime',
+                'title': {
+                    'text': 'Date'
+                }
+            },
+
+            'yAxis': {
+                'title': {
+                    'text': 'Count'
+                }
+            }
+        }
+
+        chart = Chart(options=options_kwargs, container='count_datapoints_timeseries')
+        chart.add_series(*series)
+
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/count_datapoints_timeseries.js')
+
+        return as_js_literal
+
 
 if __name__ == '__main__':
 
