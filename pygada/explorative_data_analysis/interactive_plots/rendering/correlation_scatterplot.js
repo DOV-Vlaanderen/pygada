@@ -5585,13 +5585,18 @@ Highcharts.chart('correlation_scatterplot',
   text: 'Scatterplot of parameters'
 },
   xAxis: {
+  max: 5,
+  min: 0,
   title: {
-  text: 'Experiment No.'
+  text: 'Concentrations (ng/l)'
 }
 },
   yAxis: {
+  max: 5,
+  min: 0,
+  tickInterval: 1,
   title: {
-  text: 'Observations'
+  text: 'Concentrations (ng/l)'
 }
 }
 },

@@ -1,16 +1,11 @@
 <figure class="highcharts-figure">
     <div id="boxplot"></div>
-    <p class="highcharts-description">
-        Chart showing the boxplot per parameter and the corresponding outliers.
-    </p>
-    <div id="correlation_heatmap" style="height: 500px; width: 500px; float: left ;"></div>
-    <p class="highcharts-description" >
-        Heatmap showing the correlation between the different parameters.
-    </p>
-    <div id="correlation_scatterplot" style="height: 500px; width: 500px; float: right ;"></div>
-     <p class="highcharts-description" >
-        Scatterplots between the different parameters.
-    </p>
+
+    <div id="correlation_heatmap" style="height: 65%; width: 32.5%; float:left"></div>
+
+    <div id="correlation_heatmap_count" style="height: 65%; width: 32.5%; float:left"></div>
+
+    <div id="correlation_scatterplot" style="height: 65%; width: 32.5% ; float:right"></div>
 </figure>
 
 <script src="https://code.highcharts.com/modules/boost.js"></script>
@@ -27,3 +22,4 @@
 <script src="boxplot.js"></script>
 <script src="correlation_heatmap.js"></script>
 <script src="correlation_scatterplot.js"></script>
+<script src="correlation_heatmap_count.js"></script>

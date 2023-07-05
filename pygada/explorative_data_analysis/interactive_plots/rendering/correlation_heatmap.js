@@ -8,7 +8,6 @@ null,
 null],
   marginBottom: 80,
   marginTop: 40,
-  plotBorderWidth: 1,
   type: 'heatmap'
 },
   colorAxis: {
@@ -111,13 +110,10 @@ null],
   dataLabels: {
   enabled: true
 },
-  tooltip: {
-  headerFormat: '<em>Parameter {point.key}</em><br/>'
-},
   type: 'heatmap'
 }],
   title: {
-  text: 'Correlation per parameter'
+  text: 'Correlation matrix'
 },
   xAxis: {
   categories: ['PFOS',

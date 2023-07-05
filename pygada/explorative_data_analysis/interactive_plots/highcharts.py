@@ -57,7 +57,8 @@ class Highcharts:
                 "lineColor": "lightblue"
             },
             "tooltip": {
-                "pointFormat": 'Concentration: {point.y} ' f'{self.unit}'
+                "headerFormat": '<em>Parameter {point.key}</em><br/>',
+                "pointFormat": '<b>Outliers</b> <br/> Concentration: {point.y} ' f'{self.unit}'
             }}
         ]
 
@@ -81,7 +82,7 @@ class Highcharts:
                 'type': 'logarithmic',
                 'minorTickInterval': 0.1,
                 'title': {
-                    'text': f'Concentration in log {self.unit}'
+                    'text': f'Concentration (log {self.unit})'
                 }
             }
         }
@@ -92,7 +93,7 @@ class Highcharts:
 
         return as_js_literal
 
-    def correlation_heatmap(self):
+    def correlation_heatmap(self, container, data_info, max_df=None):
 
         data_highcharts = []
 
@@ -106,18 +107,17 @@ class Highcharts:
                 "name": "Correlation",
                 "borderWidth": 1,
                 "data": data_highcharts,
-                "tooltip": {
-                    "headerFormat": '<em>Parameter {point.key}</em><br/>'
-                },
                 "type": 'heatmap',
                 "dataLabels": {
                     "enabled": True,
                 }}
         ]
 
+        max = max_df if max_df else 1
+
         options_kwargs = {
             'title': {
-                'text': 'Correlation per parameter'
+                'text': f'Correlation {data_info}'
             },
             'legend': {
                 'align': 'right',
@@ -128,6 +128,7 @@ class Highcharts:
                 'symbolHeight': 280,
 
             },
+
 
             'xAxis': {
                 'categories': columns,
@@ -146,7 +147,7 @@ class Highcharts:
             'colorAxis': {
                 'reversed': False,
                 'min': 0,
-                'max': 1,
+                'max': max,
                 'minColor': '#FFFFFF',
                 'maxColor': '#00C1FF',
             },
@@ -157,14 +158,14 @@ class Highcharts:
             },
         }
 
-        chart = Chart(options=options_kwargs, container='correlation_heatmap')
+        chart = Chart(options=options_kwargs, container=container)
         chart.add_series(*data)
 
-        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/correlation_heatmap.js')
+        as_js_literal = chart.to_js_literal(f'./interactive_plots/rendering/{container}.js')
 
         return as_js_literal
 
-    def correlation_scatterplot(self):
+    def correlation_scatterplot(self, max_conc):
 
         data_highcharts = []
         columns = list(self.df.columns)
@@ -187,14 +188,19 @@ class Highcharts:
             },
 
             'xAxis': {
+                'min': 0,
+                'max': max_conc,
                 'title': {
-                    'text': 'Experiment No.'
+                    'text': f'Concentrations ({self.unit})'
                 }
             },
 
             'yAxis': {
+                'min': 0,
+                'max': max_conc,
+                'tickInterval': 1,
                 'title': {
-                    'text': 'Observations'
+                    'text': f'Concentrations ({self.unit})'
                 }
             },
             'chart': {

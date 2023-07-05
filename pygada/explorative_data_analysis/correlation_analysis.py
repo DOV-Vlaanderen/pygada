@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 import pandas as pd
 from loguru import logger
@@ -9,29 +11,40 @@ from pygada.explorative_data_analysis.interactive_plots.highcharts import Highch
 
 class CorrelationSD:
 
-    def __init__(self, inputdf, type=None):
-
-        self.type = type
-
-        df = inputdf[['index', 'parameter', 'value']]  # todo: check if index is correct
-        df = df.pivot(index='index', columns='parameter', values='value')
-        df = df[['PFOS', 'PFHxS', 'PFNA', 'PFOA']]
-        df = np.log(df[:]).replace(np.NINF, np.nan)  # todo: check if necessary
-
-        self.df = df
-
-    def heatmap(self):
-        """Create a correlation heatmap with every parameter that is in the dataset.
-        The plot can be saved as a png file.
+    def __init__(self, inputdf, parameters, type=None):
+        """Initialize the class.
 
         Parameters
         ----------
         inputdf : dataframe
             The input dataframe.
-        outputpath : str
-            The folder where the results will be saved.
-        save : Boolean
-            The option to save the result.
+        parameters : list
+            The chosen variables.
+        type : str
+            The chosen output for figures. Static or dynamic.
+
+        Returns
+        -------
+        None"""
+
+        self.type = type
+
+
+        df = inputdf[['index', 'parameter', 'value']]  # todo: check if index is correct
+
+        df = df.pivot(index='index', columns='parameter', values='value')
+        df = df[parameters]
+        df = np.log(df[:]).replace(np.NINF, np.nan)  # todo: check if necessary
+
+        unit = inputdf['unit'].unique()[0]
+
+        self.df = df
+        self.unit = unit
+        self.parameters = parameters
+
+    def heatmap(self):
+        """Create a correlation heatmap with every parameter that is in the dataset.
+        The plot can be saved as a png file.
 
         Returns
         -------
@@ -40,7 +53,7 @@ class CorrelationSD:
 
         logger.info(f"Start the correlation matrix of the dataset.")
 
-        df1_correlation = df.corr().round(2)
+        df1_correlation = self.df.corr().round(2)
 
         if self.type == 'static':
             plt.figure(figsize=(10, 10))
@@ -57,9 +70,16 @@ class CorrelationSD:
         elif self.type == 'dynamic':
             df1_correlation = df1_correlation.loc[:, df1_correlation.columns.notna()]  # todo: check if necessary
             highcharts = Highcharts(df1_correlation)
-            highcharts.correlation_heatmap()
+            highcharts.correlation_heatmap(container='correlation_heatmap', data_info='matrix')
 
     def scatterplot(self):
+        """Create a scatter plot from every parameter that is in the dataset.
+        The plot can be saved as a png file.
+
+        Returns
+        -------
+        None
+        """
 
         if self.type == 'static':
             scatter_matrix = pd.plotting.scatter_matrix(self.df, alpha=1, figsize=(10, 10))
@@ -72,11 +92,37 @@ class CorrelationSD:
         elif self.type == 'dynamic':
             df = self.df.dropna()
             #df = self.df.head(50)  # todo: plot not rendering with large amount of data.
-            highcharts = Highcharts(df)
-            highcharts.correlation_scatterplot()
+            highcharts = Highcharts(df, self.unit)
+            highcharts.correlation_scatterplot(max_conc=math.ceil(max(df.max())))
 
+    def count(self):
+        """Create a correlation heatmap of the count of datapoints used do determine the correlation value.
+        The plot can be saved as a png file.
+
+        Returns
+        -------
+        None
+        """
+
+        df_cor_nb = pd.DataFrame(np.nan, index=self.parameters, columns=self.parameters)
+        for i in range(len(self.parameters)):
+            for j in range(len(self.parameters)):
+                df_count = self.df.dropna(subset=[self.parameters[i], self.parameters[j]])
+                df_cor_nb.loc[self.parameters[i], self.parameters[j]] = int(len(df_count))
+
+        if self.type == 'static':
+            heatmap = sns.heatmap(df_cor_nb, annot=True, fmt='g', vmin=0, vmax=max(df_cor_nb.max()))
+            sns.set(font_scale=1)
+            plt.tight_layout()
+            plt.show()
+            plt.clf()
+
+        elif self.type == 'dynamic':
+            df_cor_nb = df_cor_nb.loc[:, df_cor_nb.columns.notna()]  # todo: check if necessary
+            highcharts = Highcharts(df_cor_nb)
+            highcharts.correlation_heatmap(container='correlation_heatmap_count', data_info='count matrix', max_df=max(df_cor_nb.max()))
 
 df = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
 
-correlation_analysis = CorrelationSD(df, type='dynamic')
+correlation_analysis = CorrelationSD(df, ['PFOS', 'PFHxS', 'PFNA', 'PFOA'], type='dynamic')
 correlation_analysis.scatterplot()

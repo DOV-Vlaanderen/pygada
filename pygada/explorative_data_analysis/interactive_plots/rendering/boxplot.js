@@ -2332,7 +2332,8 @@ Highcharts.chart('boxplot',
   lineWidth: 0.5
 },
   tooltip: {
-  pointFormat: 'Concentration: {point.y} ng/l'
+  headerFormat: '<em>Parameter {point.key}</em><br/>',
+  pointFormat: '<b>Outliers</b> <br/> Concentration: {point.y} ng/l'
 },
   type: 'scatter'
 }],
@@ -2394,7 +2395,7 @@ Highcharts.chart('boxplot',
   yAxis: {
   minorTickInterval: 0.1,
   title: {
-  text: 'Concentration in log ng/l'
+  text: 'Concentration (log ng/l)'
 },
   type: 'logarithmic'
 }
