@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
 Highcharts.chart('count_datapoints_timeseries',
 {
   chart: {
-  type: 'area'
+  zooming: {
+  key: 'shift',
+  type: 'x'
+}
 },
   legend: {
   enabled: true

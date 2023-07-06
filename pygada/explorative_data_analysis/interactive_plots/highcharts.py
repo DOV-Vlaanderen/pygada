@@ -127,17 +127,13 @@ class Highcharts:
                 'verticalAlign': 'top',
                 'y': 25,
                 'symbolHeight': 280,
-
             },
-
-
             'xAxis': {
                 'categories': columns,
                 'title': {
                     'text': 'Parameter'
                 }
             },
-
             'yAxis': {
                 'categories': columns,
                 'title': {
@@ -217,14 +213,15 @@ class Highcharts:
 
     def count_datapoints_timeseries(self):
 
-        series = [LineSeries.from_pandas(self.df, property_map={'y': 'count', 'x': 'date'},
-                                         series_kwargs={'name': 'VMM groundwater'})]
+        series = [LineSeries.from_pandas(self.df, property_map={'y': 'count', 'x': 'date'}, series_kwargs={'name': 'VMM groundwater'})]
 
         options_kwargs = {
             'chart': {
-                'zoomType': 'x',
-                'type': 'area'
-            },
+                'zooming': {
+                    'key': 'shift',
+                    'type': 'x'
+                },
+              },
             'title': {
                 'text': 'Count of datapoints'
             },
