@@ -335,6 +335,7 @@ Highcharts.chart('boxplot',
   q3: 1.0
 }],
   name: 'Boxplots',
+  color: '#f8902d',
   tooltip: {
   headerFormat: '<em>Parameter {point.key}</em><br/>'
 },
@@ -2328,7 +2329,7 @@ Highcharts.chart('boxplot',
   name: 'Outliers',
   marker: {
   fillColor: 'white',
-  lineColor: 'lightblue',
+  lineColor: '#f8902d',
   lineWidth: 0.5
 },
   tooltip: {

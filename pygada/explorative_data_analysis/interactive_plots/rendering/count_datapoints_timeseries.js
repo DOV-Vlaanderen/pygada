@@ -948,6 +948,7 @@ Highcharts.chart('count_datapoints_timeseries',
   y: 48.0
 }],
   name: 'VMM groundwater',
+  color: '#f8902d',
   type: 'line'
 }],
   title: {

@@ -934,6 +934,7 @@ Highcharts.chart('correlation_scatterplot',
 }],
   name: 'PFOS-PFHxS',
   boostThreshold: 0,
+  color: '#f8902d',
   type: 'scatter'
 },
 {
@@ -1863,6 +1864,7 @@ Highcharts.chart('correlation_scatterplot',
 }],
   name: 'PFOS-PFNA',
   boostThreshold: 0,
+  color: '#8b6ea6',
   type: 'scatter'
 },
 {
@@ -2792,6 +2794,7 @@ Highcharts.chart('correlation_scatterplot',
 }],
   name: 'PFOS-PFOA',
   boostThreshold: 0,
+  color: '#6ebe43',
   type: 'scatter'
 },
 {
@@ -3721,6 +3724,7 @@ Highcharts.chart('correlation_scatterplot',
 }],
   name: 'PFHxS-PFNA',
   boostThreshold: 0,
+  color: '#9c7848',
   type: 'scatter'
 },
 {
@@ -4650,6 +4654,7 @@ Highcharts.chart('correlation_scatterplot',
 }],
   name: 'PFHxS-PFOA',
   boostThreshold: 0,
+  color: '#e0592a',
   type: 'scatter'
 },
 {
@@ -5579,6 +5584,7 @@ Highcharts.chart('correlation_scatterplot',
 }],
   name: 'PFNA-PFOA',
   boostThreshold: 0,
+  color: '#c28942',
   type: 'scatter'
 }],
   title: {

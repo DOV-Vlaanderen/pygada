@@ -9,8 +9,11 @@ class Highcharts:
 
     def __init__(self, input_df, unit=None):
 
+        colors = ['#f8902d', '#8b6ea6', '#6ebe43', '#9c7848', '#e0592a', '#c28942', '#41796c']
+
         self.df = input_df
         self.unit = unit
+        self.color = colors
 
     def boxplot(self):
         df_boxplot_stats = pd.DataFrame({'whislo': [], 'q1': [], 'med': [], 'q3': [], 'whishi': []})
@@ -48,14 +51,14 @@ class Highcharts:
             "tooltip": {
                 "headerFormat": '<em>Parameter {point.key}</em><br/>'
             },
-            "type": 'boxplot'}, {
+            "type": 'boxplot', 'color':self.color[0]}, {
             "name": "Outliers",
             "data": outliers_list,
             "type": 'scatter',
             "marker": {
                 "fillColor": 'white',
                 "lineWidth": 0.5,
-                "lineColor": "lightblue"
+                "lineColor": self.color[0]
             },
             "tooltip": {
                 "headerFormat": '<em>Parameter {point.key}</em><br/>',
@@ -146,7 +149,7 @@ class Highcharts:
                 'min': 0,
                 'max': max,
                 'minColor': '#FFFFFF',
-                'maxColor': '#00C1FF',
+                'maxColor': self.color[0],
             },
             'chart': {
                 'type': 'heatmap',
@@ -166,14 +169,16 @@ class Highcharts:
 
         data_highcharts = []
         columns = list(self.df.columns)
-
+        count = -1
         for i in range(len(columns) - 1):
+
             for k in range(1, len(columns) - i):
+                count += 1
                 scatter_data = []
                 for j in range(len(self.df)):
                     scatter_data.append([self.df[columns[i]][j], self.df[columns[i + k]][j]])
                 data_highcharts.append(
-                    {"boostThreshold": 0, "name": f'{columns[i]}-{columns[i + k]}', "data": scatter_data, "type": 'scatter'})
+                    {"boostThreshold": 0, "name": f'{columns[i]}-{columns[i + k]}', "data": scatter_data, "type": 'scatter', "color": self.color[count]})
         options_kwargs = {
 
             'title': {
@@ -213,7 +218,7 @@ class Highcharts:
 
     def count_datapoints_timeseries(self):
 
-        series = [LineSeries.from_pandas(self.df, property_map={'y': 'count', 'x': 'date'}, series_kwargs={'name': 'VMM groundwater'})]
+        series = [LineSeries.from_pandas(self.df, property_map={'y': 'count', 'x': 'date'}, series_kwargs={'name': 'VMM groundwater', 'color':self.color[0]})]
 
         options_kwargs = {
             'chart': {

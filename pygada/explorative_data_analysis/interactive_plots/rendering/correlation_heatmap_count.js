@@ -14,7 +14,7 @@ null],
   max: 233.0,
   min: 0,
   reversed: false,
-  maxColor: '#00C1FF',
+  maxColor: '#f8902d',
   minColor: '#FFFFFF'
 },
   legend: {
