@@ -28,7 +28,7 @@ def distance_histogram(df, type):
     distances = sorted(distances)
 
     if type == 'static':
-        histogram = sns.histplot(data=distances, binwidth=2500)
+        histogram = sns.histplot(data=distances, bins=100)
         histogram.set_xlabel("Distance (m)")
         histogram.set_ylabel("Count")
         plt.show()
@@ -49,4 +49,4 @@ def distance_histogram(df, type):
         highcharts.column_plot()
 
 df = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
-distance_histogram(df, type='dynamic')
+distance_histogram(df, type='static')
