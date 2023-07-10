@@ -1,5 +1,6 @@
 from highcharts_core.chart import Chart
 from highcharts_core.options.series.area import LineSeries
+from highcharts_core.options.series.bar import ColumnSeries
 from matplotlib.cbook import boxplot_stats
 import pandas as pd
 import numpy as np
@@ -255,6 +256,108 @@ class Highcharts:
         as_js_literal = chart.to_js_literal('./interactive_plots/rendering/count_datapoints_timeseries.js')
 
         return as_js_literal
+
+    def histogram(self):
+
+        series = [{
+            'name': 'Histogram',
+            'type': 'histogram',
+            'xAxis': 1,
+            'yAxis': 1,
+            'baseSeries': 's1'
+        }, {
+            'name': 'Data',
+            'data': self.df,
+            'type': 'scatter',
+            'id': 's1',
+            'visible': False
+        }]
+
+        options_kwargs = {
+
+            'title': {
+                'text': 'Distance histogram'
+            },
+
+            'legend': {
+                'enabled': False
+            },
+
+            'xAxis': [{
+                'title': {'text': ''},
+                'alignTicks': False
+            }, {
+                'title': {'text': ''},
+                'alignTicks': False,
+            }],
+
+            'yAxis': [{
+                'title': {'text': ''}
+            }, {
+                'title': {'text': 'Histogram'},
+            }],
+            'plotOptions': {
+                'histogram': {
+                    'accessibility': {
+                        'point': {
+                            'valueDescriptionFormat': '{index}. {point.x:.3f} to {point.x2:.3f}, {point.y}.'
+                        }
+                    }
+                }
+            }
+        }
+
+        chart = Chart(options=options_kwargs, container='histogram')
+        chart.add_series(*series)
+
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/histogram.js')
+
+        return as_js_literal
+
+    def column_plot(self):
+
+        series = [ColumnSeries.from_pandas(self.df, property_map = {'y': 'count', 'x': 'bin_mean', 'id': 'bin_edges'}, series_kwargs={'name': 'VMM groundwater', 'color':self.color[0]})]
+
+        options_kwargs = {
+            'chart': {
+                'zooming': {
+                    'key': 'shift',
+                    'type': 'x'
+                },
+            },
+            'title': {
+                'text': 'Distance histogram'
+            },
+
+            'legend': {
+                'enabled': True
+            },
+
+            'xAxis': {
+                'title': {
+                    'text': 'Distance (m)'
+                }
+            },
+
+            'yAxis': {
+                'title': {
+                    'text': 'Count'
+                }
+            },
+            "tooltip": {
+                "pointFormat": 'Distance interval: {point.id}<br/> Count: {point.y}'
+            },
+            "plotOptions": {'column' : {'groupPadding': 0,
+                'pointPadding': 0}
+        }}
+
+        chart = Chart(options=options_kwargs, container='distance_histogram')
+        chart.add_series(*series)
+
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/distance_histogram.js')
+
+        return as_js_literal
+
 
 
 if __name__ == '__main__':
