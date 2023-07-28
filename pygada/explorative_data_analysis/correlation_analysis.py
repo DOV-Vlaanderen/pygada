@@ -107,7 +107,6 @@ class CorrelationSD:
             df = self.df.dropna()
             #df = self.df.head(50)  # todo: plot not rendering with large amount of data.
             highcharts = Highcharts(df, self.unit)
-            print(self.df.values.tolist())
             highcharts.correlation_scatterplot_matrix()
 
 

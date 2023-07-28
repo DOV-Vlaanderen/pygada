@@ -47,13 +47,13 @@ class Highcharts:
                 [df_boxplot_outliers['index'].values.tolist()[i], df_boxplot_outliers['value'].values.tolist()[i]])
 
         data = [{
-            "name": "Boxplots",
+            "name": "Boxplot",
             "data": data,
             "tooltip": {
                 "headerFormat": '<em>Parameter {point.key}</em><br/>'
             },
             "type": 'boxplot', 'color':self.color[0]}, {
-            "name": "Outliers",
+            "name": "Extreme value",
             "data": outliers_list,
             "type": 'scatter',
             "marker": {
@@ -63,17 +63,17 @@ class Highcharts:
             },
             "tooltip": {
                 "headerFormat": '<em>Parameter {point.key}</em><br/>',
-                "pointFormat": '<b>Outliers</b> <br/> Concentration: {point.y} ' f'{self.unit}'
+                "pointFormat": '<b>Extreme value</b> <br/> Concentration: {point.y} ' f'{self.unit}'
             }}
         ]
 
         options_kwargs = {
             'title': {
-                'text': 'Box Plot per Parameter'
+                'text': 'Boxplot per Parameter'
             },
 
             'legend': {
-                'enabled': True
+                'enabled': False
             },
 
             'xAxis': {
@@ -175,8 +175,6 @@ class Highcharts:
 
         return as_js_literal
 
-
-
     def correlation_scatterplot_matrix(self):
 
         data_highcharts = []
@@ -190,18 +188,22 @@ class Highcharts:
 
                 data_highcharts.append(
                     {"name": f'{columns[i]}-{columns[k]}', "data": scatter_data, "type": 'scatter', 'xAxis': i,
-                     'yAxis': k})
+                     'yAxis': k, "color": '#f8902d', 'marker': {'symbol': 'circle'}})
 
         count = int(len(columns)) + 1
-        print(count)
 
         yAxis = [{
+            'min': 0,
+            'tickAmount':3,
+            'allowDecimals': False,
             'title': {
                 'text': f'{columns[0]}'
             },
             'height': f'{int(100 / count)}%',
         }]
         xAxis = [{
+            'min': 0,
+            'allowDecimals': False,
             'title': {
                 'text': f'{columns[0]}'
             },
@@ -210,6 +212,9 @@ class Highcharts:
 
         for i in range(1, count - 1):
             yAxis.append({
+            'min': 0,
+            'tickAmount':3,
+            'allowDecimals':False,
                 'title': {
                     'text': f'{columns[i]}'
                 },
@@ -219,6 +224,8 @@ class Highcharts:
             })
 
             xAxis.append({
+            'allowDecimals':False,
+            'min': 0,
                 'title': {
                     'text': f'{columns[i]}'
                 },
@@ -244,6 +251,11 @@ class Highcharts:
             "tooltip": {
                 "pointFormat": '{point.series.name} <br/> {point.x}-{point.y}'
             },
+            'plotOptions': {
+                'scatter': {
+                    'marker': {
+                        'radius': 10/len(columns),
+                        'symbol': 'circle'}}}
 
         }
 

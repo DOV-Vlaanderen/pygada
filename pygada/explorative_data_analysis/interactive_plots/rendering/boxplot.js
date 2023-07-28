@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 Highcharts.chart('boxplot',
 {
   legend: {
-  enabled: true
+  enabled: false
 },
   series: [{
   data: [{
@@ -334,7 +334,7 @@ Highcharts.chart('boxplot',
   q1: 1.0,
   q3: 1.0
 }],
-  name: 'Boxplots',
+  name: 'Boxplot',
   color: '#f8902d',
   tooltip: {
   headerFormat: '<em>Parameter {point.key}</em><br/>'
@@ -2326,7 +2326,7 @@ Highcharts.chart('boxplot',
   x: 41,
   y: 2.0
 }],
-  name: 'Outliers',
+  name: 'Extreme value',
   marker: {
   fillColor: 'white',
   lineColor: '#f8902d',
@@ -2334,12 +2334,12 @@ Highcharts.chart('boxplot',
 },
   tooltip: {
   headerFormat: '<em>Parameter {point.key}</em><br/>',
-  pointFormat: '<b>Outliers</b> <br/> Concentration: {point.y} ng/l'
+  pointFormat: '<b>Extreme value</b> <br/> Concentration: {point.y} ng/l'
 },
   type: 'scatter'
 }],
   title: {
-  text: 'Box Plot per Parameter'
+  text: 'Boxplot per Parameter'
 },
   xAxis: {
   categories: ['10:2 FTS',
