@@ -98,24 +98,30 @@ class Highcharts:
 
         return as_js_literal
 
-    def correlation_heatmap(self, container, data_info, max_df=None):
+    def correlation_heatmap(self, container, data_info, max_df=None, count=None):
 
         data_highcharts = []
 
         columns = list(self.df.columns)
         data = list(self.df[x].values.tolist() for x in columns)
+        count_data = list(count[x].values.tolist() for x in columns)
+        names = []
+        count = []
+
         for i in range(len(data)):
             for j in range(len(data)):
-                data_highcharts.append([i, j, data[i][j]])
+                names.append(f'{columns[i]}-{columns[j]}')
+                data_highcharts.append({'x': i, 'y': j, 'value': data[i][j], 'name': f'{count_data[i][j]}'})
+                count.append(count_data[i][j])
 
         data = [{
-                "name": "Correlation",
-                "borderWidth": 1,
-                "data": data_highcharts,
-                "type": 'heatmap',
-                "dataLabels": {
-                    "enabled": True,
-                }}
+            "name": "Correlation",
+            "borderWidth": 1,
+            "data": data_highcharts,
+            "type": 'heatmap',
+            "dataLabels": [{"enabled": True,
+                            'format': '{point.value} <br> ({point.options.name})'}]
+        }
         ]
 
         max = max_df if max_df else 1
@@ -157,6 +163,9 @@ class Highcharts:
                 'marginTop': 40,
                 'marginBottom': 80,
             },
+            'tooltip': {
+                'formatter': 'function() {return this.series.xAxis.categories[this.point.x] + "</b> - <b>" + this.series.yAxis.categories[this.point.y] + "</b><br> Correlation :<b>" + this.point.value + "</b><br> Count :<b>" + this.point.options.name}'
+            },
         }
 
         chart = Chart(options=options_kwargs, container=container)
@@ -166,20 +175,58 @@ class Highcharts:
 
         return as_js_literal
 
-    def correlation_scatterplot(self, max_conc):
+
+
+    def correlation_scatterplot_matrix(self):
 
         data_highcharts = []
         columns = list(self.df.columns)
-        count = -1
-        for i in range(len(columns) - 1):
 
-            for k in range(1, len(columns) - i):
-                count += 1
+        for i in range(len(columns)):
+            for k in range(len(columns)):
                 scatter_data = []
                 for j in range(len(self.df)):
-                    scatter_data.append([self.df[columns[i]][j], self.df[columns[i + k]][j]])
+                    scatter_data.append([self.df[columns[i]][j].round(2), self.df[columns[k]][j].round(2)])
+
                 data_highcharts.append(
-                    {"boostThreshold": 0, "name": f'{columns[i]}-{columns[i + k]}', "data": scatter_data, "type": 'scatter', "color": self.color[count]})
+                    {"name": f'{columns[i]}-{columns[k]}', "data": scatter_data, "type": 'scatter', 'xAxis': i,
+                     'yAxis': k})
+
+        count = int(len(columns)) + 1
+        print(count)
+
+        yAxis = [{
+            'title': {
+                'text': f'{columns[0]}'
+            },
+            'height': f'{int(100 / count)}%',
+        }]
+        xAxis = [{
+            'title': {
+                'text': f'{columns[0]}'
+            },
+            'width': f'{int(100 / count)}%',
+        }]
+
+        for i in range(1, count - 1):
+            yAxis.append({
+                'title': {
+                    'text': f'{columns[i]}'
+                },
+                'top': f'{((i * int(100 / count)) + i * (int(100 / count) / (count - 2)))}%',
+                'height': f'{int(100 / count)}%',
+                'offset': 0,
+            })
+
+            xAxis.append({
+                'title': {
+                    'text': f'{columns[i]}'
+                },
+                'left': f'{(i * int(100 / count) + i * int(100 / count) / (count - 2))}%',
+                'width': f'{int(100 / count)}%',
+                'offset': 0,
+            })
+
         options_kwargs = {
 
             'title': {
@@ -187,33 +234,23 @@ class Highcharts:
             },
 
             'legend': {
-                'enabled': True
+                'enabled': False
             },
 
-            'xAxis': {
-                'min': 0,
-                'max': max_conc,
-                'title': {
-                    'text': f'Concentrations ({self.unit})'
-                }
+            'yAxis': yAxis,
+
+            'xAxis': xAxis,
+
+            "tooltip": {
+                "pointFormat": '{point.series.name} <br/> {point.x}-{point.y}'
             },
 
-            'yAxis': {
-                'min': 0,
-                'max': max_conc,
-                'tickInterval': 1,
-                'title': {
-                    'text': f'Concentrations ({self.unit})'
-                }
-            },
-            'chart': {
-                'type': 'scatter',
-            },
         }
-        chart = Chart(options=options_kwargs, container='correlation_scatterplot')
+
+        chart = Chart(options=options_kwargs, container='correlation_scatterplot_matrix')
         chart.add_series(*data_highcharts)
 
-        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/correlation_scatterplot.js')
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/correlation_scatterplot_matrix.js')
 
         return as_js_literal
 

@@ -55,6 +55,12 @@ class CorrelationSD:
 
         df1_correlation = self.df.corr().round(2)
 
+        df_cor_nb = pd.DataFrame(np.nan, index=self.parameters, columns=self.parameters)
+        for i in range(len(self.parameters)):
+            for j in range(len(self.parameters)):
+                df_count = self.df.dropna(subset=[self.parameters[i], self.parameters[j]])
+                df_cor_nb.loc[self.parameters[i], self.parameters[j]] = int(len(df_count))
+
         if self.type == 'static':
             plt.figure(figsize=(10, 10))
 
@@ -67,10 +73,18 @@ class CorrelationSD:
             #    plt.savefig(f"{outputpath}/{parameter}_{transformation}_correlation_heatmap.png")
             plt.clf()
 
+            heatmap = sns.heatmap(df_cor_nb, annot=True, fmt='g', vmin=0, vmax=max(df_cor_nb.max()))
+            sns.set(font_scale=1)
+            plt.tight_layout()
+            plt.show()
+            #if save:
+            #    plt.savefig(f"{outputpath}/{parameter}_{transformation}_count_heatmap.png")
+            plt.clf()
+
         elif self.type == 'dynamic':
             df1_correlation = df1_correlation.loc[:, df1_correlation.columns.notna()]  # todo: check if necessary
             highcharts = Highcharts(df1_correlation)
-            highcharts.correlation_heatmap(container='correlation_heatmap', data_info='matrix')
+            highcharts.correlation_heatmap(container='correlation_heatmap', data_info='matrix', count=df_cor_nb)
 
     def scatterplot(self):
         """Create a scatter plot from every parameter that is in the dataset.
@@ -93,34 +107,9 @@ class CorrelationSD:
             df = self.df.dropna()
             #df = self.df.head(50)  # todo: plot not rendering with large amount of data.
             highcharts = Highcharts(df, self.unit)
-            highcharts.correlation_scatterplot(max_conc=math.ceil(max(df.max())))
+            print(self.df.values.tolist())
+            highcharts.correlation_scatterplot_matrix()
 
-    def count(self):
-        """Create a correlation heatmap of the count of datapoints used do determine the correlation value.
-        The plot can be saved as a png file.
-
-        Returns
-        -------
-        None
-        """
-
-        df_cor_nb = pd.DataFrame(np.nan, index=self.parameters, columns=self.parameters)
-        for i in range(len(self.parameters)):
-            for j in range(len(self.parameters)):
-                df_count = self.df.dropna(subset=[self.parameters[i], self.parameters[j]])
-                df_cor_nb.loc[self.parameters[i], self.parameters[j]] = int(len(df_count))
-
-        if self.type == 'static':
-            heatmap = sns.heatmap(df_cor_nb, annot=True, fmt='g', vmin=0, vmax=max(df_cor_nb.max()))
-            sns.set(font_scale=1)
-            plt.tight_layout()
-            plt.show()
-            plt.clf()
-
-        elif self.type == 'dynamic':
-            df_cor_nb = df_cor_nb.loc[:, df_cor_nb.columns.notna()]  # todo: check if necessary
-            highcharts = Highcharts(df_cor_nb)
-            highcharts.correlation_heatmap(container='correlation_heatmap_count', data_info='count matrix', max_df=max(df_cor_nb.max()))
 
 df = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
 
