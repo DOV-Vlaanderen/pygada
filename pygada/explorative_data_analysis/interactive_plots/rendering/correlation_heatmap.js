@@ -30,102 +30,102 @@ null],
   value: 1.0,
   x: 0,
   y: 0,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 0.2,
   x: 0,
   y: 1,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 0.33,
   x: 0,
   y: 2,
-  name: '231.0'
+  name: '231'
 },
 {
   value: 0.37,
   x: 0,
   y: 3,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 0.2,
   x: 1,
   y: 0,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 1.0,
   x: 1,
   y: 1,
-  name: '233.0'
+  name: '233'
 },
 {
   value: 0.06,
   x: 1,
   y: 2,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 0.6,
   x: 1,
   y: 3,
-  name: '233.0'
+  name: '233'
 },
 {
   value: 0.33,
   x: 2,
   y: 0,
-  name: '231.0'
+  name: '231'
 },
 {
   value: 0.06,
   x: 2,
   y: 1,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 1.0,
   x: 2,
   y: 2,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 0.18,
   x: 2,
   y: 3,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 0.37,
   x: 3,
   y: 0,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 0.6,
   x: 3,
   y: 1,
-  name: '233.0'
+  name: '233'
 },
 {
   value: 0.18,
   x: 3,
   y: 2,
-  name: '232.0'
+  name: '232'
 },
 {
   value: 1.0,
   x: 3,
   y: 3,
-  name: '233.0'
+  name: '233'
 }],
   name: 'Correlation',
   dataLabels: [{
   enabled: true,
-  format: '{point.value} <br> ({point.options.name})'
+  format: '{point.value:,.2f} <br> ({point.options.name})'
 }],
   type: 'heatmap'
 }],
@@ -134,7 +134,7 @@ null],
 },
   tooltip: {
   formatter: function() {
-return this.series.xAxis.categories[this.point.x] + "</b> - <b>" + this.series.yAxis.categories[this.point.y] + "</b><br> Correlation :<b>" + this.point.value + "</b><br> Count :<b>" + this.point.options.name}
+return this.series.xAxis.categories[this.point.x] + " - " + this.series.yAxis.categories[this.point.y] + "<br> Correlation : " + Highcharts.numberFormat(this.point.value,2) + "<br> Count : " + this.point.options.name}
 },
   xAxis: {
   categories: ['PFOS',

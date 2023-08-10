@@ -111,7 +111,7 @@ class Highcharts:
         for i in range(len(data)):
             for j in range(len(data)):
                 names.append(f'{columns[i]}-{columns[j]}')
-                data_highcharts.append({'x': i, 'y': j, 'value': data[i][j], 'name': f'{count_data[i][j]}'})
+                data_highcharts.append({'x': i, 'y': j, 'value': data[i][j], 'name': f'{int(count_data[i][j])}'})
                 count.append(count_data[i][j])
 
         data = [{
@@ -120,7 +120,7 @@ class Highcharts:
             "data": data_highcharts,
             "type": 'heatmap',
             "dataLabels": [{"enabled": True,
-                            'format': '{point.value} <br> ({point.options.name})'}]
+                            'format': '{point.value:,.2f} <br> ({point.options.name})'}]
         }
         ]
 
@@ -164,7 +164,7 @@ class Highcharts:
                 'marginBottom': 80,
             },
             'tooltip': {
-                'formatter': 'function() {return this.series.xAxis.categories[this.point.x] + "</b> - <b>" + this.series.yAxis.categories[this.point.y] + "</b><br> Correlation :<b>" + this.point.value + "</b><br> Count :<b>" + this.point.options.name}'
+                'formatter': 'function() {return this.series.xAxis.categories[this.point.x] + " - " + this.series.yAxis.categories[this.point.y] + "<br> Correlation : " + Highcharts.numberFormat(this.point.value,2) + "<br> Count : " + this.point.options.name}'
             },
         }
 
@@ -249,7 +249,7 @@ class Highcharts:
             'xAxis': xAxis,
 
             "tooltip": {
-                "pointFormat": '{point.series.name} <br/> {point.x}-{point.y}'
+                "pointFormat": '{point.series.name} <br/> {point.x:,.2f}-{point.y:,.2f}'
             },
             'plotOptions': {
                 'scatter': {
