@@ -30,7 +30,7 @@ class FilterTransformData:
 
         if medium == 'soil':
             df['top'] = df['top']/100
-            df['bottom'] = df['bottom'] / 100
+            df['bottom'] = df['bottom']/100
 
         return df
 
