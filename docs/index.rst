@@ -37,17 +37,20 @@ Contents:
    :caption: User guide
    :maxdepth: 1
    
-   data_input
+   data input
+   demo dataset
    general
 
 .. toctree::
    :caption: Developer guide
    :maxdepth: 1
    
+   authors   
    contributing
    development
    history
-   authors
+   test dataset
+   
 
 Indices and tables
 ==================
