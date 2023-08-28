@@ -25,7 +25,7 @@ Data input
    
    notebooks/data_input/groundwater_pydov.ipynb
    notebooks/data_input/soil_pydov.ipynb
-   https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/PFAS_concentrations_tutorial.ipynb
+   [PFAS-pydov tutorial](https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/PFAS_concentrations_tutorial.ipynb)
 
 --------------
 Data filtering
