@@ -11,4 +11,4 @@ To test the tool a test dataset is used. This dataset is a random selection of 1
 
    notebooks/data_preparation/PFAS/demo_test_dataset.ipynb
 
-   Test dataset <pygada/datasets/PFAS/test_dataset.txt>
+   pygada/datasets/PFAS/test_dataset.txt

@@ -16,10 +16,10 @@ Combined soil and groundwater datasets pydov
 .. toctree::
    :maxdepth: 1
 
-   Combined soil dataset <pygada/datasets/PFAS/gecombineerde_bodem_dataset.csv>
-   Combined groundwater dataset <pygada/datasets/PFAS/gecombineerde_grondwater_dataset.csv>
+   pygada/datasets/PFAS/gecombineerde_bodem_dataset.csv
+   pygada/datasets/PFAS/gecombineerde_grondwater_dataset.csv
 
-| The first was performing a quality control, including a data exploration and cleaning.
+| The first step was performing a quality control, including a data exploration and cleaning.
 
 **Soil and groundwater dataset**
 
@@ -49,10 +49,10 @@ Combined soil and groundwater datasets pydov
    notebooks/data_preparation/PFAS/quality_control_groundwater.ipynb
    notebooks/data_preparation/PFAS/quality_control_soil.ipynb
 
-   Cleaned soil dataset <pygada/datasets/PFAS/combined_soil_dataset_cleaned.txt>
-   Cleaned groundwater dataset <pygada/datasets/PFAS/combined_groundwater_dataset_cleaned.txt>
-   Error soil dataset <pygada/datasets/PFAS/combined_soil_dataset_error.txt>
-   Error groundwater dataset <pygada/datasets/PFAS/combined_groundwater_dataset_error.txt>
+   pygada/datasets/PFAS/combined_soil_dataset_cleaned.txt
+   pygada/datasets/PFAS/combined_groundwater_dataset_cleaned.txt
+   pygada/datasets/PFAS/combined_soil_dataset_error.txt
+   pygada/datasets/PFAS/combined_groundwater_dataset_error.txt
 
 The cleaned datasets are combined into one, which results in the demo dataset.
 
@@ -61,4 +61,4 @@ The cleaned datasets are combined into one, which results in the demo dataset.
 
    notebooks/data_preparation/PFAS/demo_test_dataset.ipynb
 
-   Demo dataset <pygada/datasets/PFAS/demo_dataset.txt>
+   pygada/datasets/PFAS/demo_dataset.txt
