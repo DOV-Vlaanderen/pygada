@@ -1,6 +1,6 @@
 import pandas as pd
 
-from pygada.data_filtering_transforming.df_edits import FilterTransformData
+from pygada.data_preparation.data_filtering.data_wrangling import FilterTransformData
 
 
 def filter_to_3d(df):
