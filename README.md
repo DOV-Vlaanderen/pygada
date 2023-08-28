@@ -1,5 +1,5 @@
 # pygada
-[![Documentation Status](https://readthedocs.org/projects/pygada/badge/?version=latest)](https://pygada.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/pygada/badge/?version=latest)](https://pygada.readthedocs.io/en/stable/?badge=latest)
 [![DOI](https://zenodo.org/badge/617938141.svg)](https://zenodo.org/badge/latestdoi/617938141)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dov-vlaanderen/pygada/main?filepath=docs%2Fnotebooks)
@@ -22,7 +22,7 @@ It is hosted on [GitHub](https://github.com/DOV-Vlaanderen/pygada) and developme
 DOV aggregates data about soil, subsoil and groundwater of Flanders and makes them publicly available.
 With this package DOV offers a tool to perform data-analysis on the data from DOV. Nevertheless, this package also works for a private dataset.
 
-To get started, see the documentation at https://pygada.readthedocs.io/en/latest/.
+To get started, see the documentation at https://pygada.readthedocs.io/en/stable/.
 
 Please note that using DOV data with pygada is governed by the same [disclaimer](https://www.dov.vlaanderen.be/page/disclaimer) that applies to the other DOV services. Be sure to consult it when using DOV data with pygada.
 
@@ -36,17 +36,17 @@ pip install pygada
 
 <!--Or clone the [git repository](https://github.com/DOV-Vlaanderen/pygada) and install with `python setup.py install` to get the latest snapshot from the master branch.--> 
 
-To contribute to the code, check out the [installation instructions](https://pygada.readthedocs.io/en/stable/installation.html) and the [development guidelines](https://pydov.readthedocs.io/en/stable/development.html).
+To contribute to the code, check out the [installation instructions](https://pygada.readthedocs.io/en/stable/installation.html) and the [development guidelines](https://pygada.readthedocs.io/en/stable/development.html).
 
 ## Quick start
 
 ## Documentation
 
-Full documentation of `pygada` can be found on our [ReadTheDocs page](https://pygada.readthedocs.io).
+Full documentation of `pygada` can be found on our [ReadTheDocs page](https://pygada.readthedocs.io/en/stable).
 
 ## Contributing
 
 You do not need to be a code expert to contribute to this project as there are several ways you can contribute to
-this project. Have a look at the [contributing page](https://pygada.readthedocs.io/en/latest/contributing.html).
+this project. Have a look at the [contributing page](https://pygada.readthedocs.io/en/stable/contributing.html).
 
 *This repository is currently being build up based on the thesis work of Guillaume Vandekerckhove, pygeostat.*
