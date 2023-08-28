@@ -7,7 +7,7 @@ Demo dataset
 A representative PFAS demo dataset is created in function of the examples.
 
 | The PFAS soil and groundwater data is downloaded through pydov on 03/08/2023.
-| For now, the focus is on the :download:`combined soil <pygada/datasets/PFAS/gecombineerde_bodem_dataset.csv>` and :download:`combined groundwater <pygada/datasets/PFAS/gecombineerde_grondwater_dataset.csv>` datasets.
+| For now, the focus is on the :download:`combined soil <../pygada/datasets/PFAS/gecombineerde_bodem_dataset.csv>` and :download:`combined groundwater <pygada/datasets/PFAS/gecombineerde_grondwater_dataset.csv>` datasets.
 
 --------------------------------------------
 Combined soil and groundwater datasets pydov
@@ -43,12 +43,7 @@ Combined soil and groundwater datasets pydov
    notebooks/data_preparation/PFAS/quality_control_groundwater.ipynb
    notebooks/data_preparation/PFAS/quality_control_soil.ipynb
 
-   pygada/datasets/PFAS/combined_soil_dataset_cleaned.txt
-   pygada/datasets/PFAS/combined_groundwater_dataset_cleaned.txt
-   pygada/datasets/PFAS/combined_soil_dataset_error.txt
-   pygada/datasets/PFAS/combined_groundwater_dataset_error.txt
-
-The cleaned datasets are combined into one, which results in the demo dataset.
+The cleaned datasets (:download:`soil <pygada/datasets/PFAS/combined_soil_dataset_cleaned.txt>` and :download:`groundwater <pygada/datasets/PFAS/combined_groundwater_dataset_cleaned.txt>`) are combined into one, which results in the demo dataset.
 
 .. toctree::
    :maxdepth: 1
