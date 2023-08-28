@@ -42,7 +42,7 @@ To contribute to the code, check out the [installation instructions](https://pyg
 
 ## Documentation
 
-Full documentation of `pygada` can be found on our [ReadTheDocs page](https://pygada.readthedocs.io).
+Full documentation of `pygada` can be found on our [ReadTheDocs page](https://pygada.readthedocs.io/en/stable).
 
 ## Contributing
 

@@ -7,17 +7,11 @@ Demo dataset
 A representative PFAS demo dataset is created in function of the examples.
 
 | The PFAS soil and groundwater data is downloaded through pydov on 03/08/2023.
-| For now, the focus is on the combined soil and combined groundwater datasets.
+| For now, the focus is on the :download:`combined soil <pygada/datasets/PFAS/gecombineerde_bodem_dataset.csv>` and :download:`combined groundwater <pygada/datasets/PFAS/gecombineerde_grondwater_dataset.csv>` datasets.
 
 --------------------------------------------
 Combined soil and groundwater datasets pydov
 --------------------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   pygada/datasets/PFAS/gecombineerde_bodem_dataset.csv
-   pygada/datasets/PFAS/gecombineerde_grondwater_dataset.csv
 
 | The first step was performing a quality control, including a data exploration and cleaning.
 
