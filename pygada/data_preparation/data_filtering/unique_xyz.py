@@ -5,17 +5,17 @@ from pygada.data_preparation.data_filtering.data_wrangling import FilterTransfor
 
 def filter_to_3d(df):
     df_len_start = len(df)
-    df2 = df[df.duplicated(subset=['field_lab', 'parameter', 'x', 'y', 'top', 'bottom', 'source'])]
+    df2 = df[df.duplicated()]  # subset=['field_lab', 'parameter', 'x', 'y', 'top', 'bottom', 'source']
     df2 = df2.reset_index()
     df_copy = df.copy()
     for i in range(len(df2)):
-        df3 = df_copy[(df_copy['field_lab'] == df2['field_lab'][i]) &
-                      (df_copy['parameter'] == df2['parameter'][i]) &
-                      (df_copy['x'] == df2['x'][i]) &
-                      (df_copy['y'] == df2['y'][i]) &
-                      (df_copy['top'] == df2['top'][i]) &
-                      (df_copy['bottom'] == df2['bottom'][i]) &
-                      (df_copy['source'] == df2['source'][i])]
+        df3 = df_copy[(df_copy['parameter'] == df2['parameter'][i]) &
+                      (df_copy['x_m_L72'] == df2['x_m_L72'][i]) &
+                      (df_copy['y_m_L72'] == df2['y_m_L72'][i]) &
+                      (df_copy['top_m_mv'] == df2['top_m_mv'][i]) &
+                      (df_copy['basis_m_mv'] == df2['basis_m_mv'][i]) &
+                      (df_copy['source'] == df2['source'][i]) &
+                      (df_copy['matrix'] == df2['matrix'][i])]
         df = df.drop(df3.index)
         df3 = df3.sort_values('date', ascending=False)
         unique_recent_date = df3.loc[df3['date'] == df3['date'].iloc[0]]

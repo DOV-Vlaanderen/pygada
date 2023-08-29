@@ -30,6 +30,7 @@ def soil(inputfile, save=True):
     df_result = pd.concat([df, df_error_2]).drop_duplicates(keep=False)
 
     df_result['parameter'] = df_result['parameter'].replace({'som PFOA': 'PFOAtotal', 'som PFOS': 'PFOStotal', 'ADONA': 'DONA'})
+    df_result['date'] = pd.to_datetime(df_result['date'])
 
     if save:
         path = os.getcwd()
@@ -75,6 +76,7 @@ def groundwater(inputfile, save=True):
                                                              'PFOS vertakt': 'PFOSbranched',
                                                              'PFOS lineair': 'PFOS',
                                                              'PFOA lineair': 'PFOA'})
+    df_result['date'] = pd.to_datetime(df_result['date'])
 
     if save:
         path = os.getcwd()
