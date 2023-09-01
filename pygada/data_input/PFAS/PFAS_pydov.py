@@ -12,6 +12,24 @@ from datetime import datetime
 from importlib.metadata import version
 import json
 
+def json_serial(obj):
+    """JSON serializer for objects not serializable by default json code
+
+    Parameters
+    ----------
+    obj : datetime
+        The date and time.
+
+    Returns
+    -------
+    obj: str
+        The date as a string.
+    """
+
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+    raise TypeError("Type %s not serializable" % type(obj))
+
 
 class RequestPFASdata:
     """Class to download PFAS data through pydov."""
@@ -21,24 +39,6 @@ class RequestPFASdata:
 
         Create a metadata file that contains the date, necessary package versions and the datapoints count.
         """
-
-        def json_serial(obj):
-            """JSON serializer for objects not serializable by default json code
-
-            Parameters
-            ----------
-            obj : datetime
-                The date and time.
-
-            Returns
-            -------
-            obj: str
-                The date as a string.
-            """
-
-            if isinstance(obj, datetime):
-                return obj.isoformat()
-            raise TypeError("Type %s not serializable" % type(obj))
 
         date = datetime.now()
         date = json_serial(date)
