@@ -6,4 +6,4 @@ packaging
 pandas
 tqdm
 pydov
-#pydov[proxy]>=3.1.0
+
