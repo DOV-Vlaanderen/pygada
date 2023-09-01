@@ -1,7 +1,7 @@
 API reference
 =============
 
-Data_input
+Data input
 ----------
 
 Groundwater
@@ -16,5 +16,5 @@ Soil
 
 PFAS
 ****
-.. automodule:: pygada.data_input.PFAS_pydov
+.. automodule:: pygada.data_input.PFAS_pydov.PFAS_pydov
     :members:
