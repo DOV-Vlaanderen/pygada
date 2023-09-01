@@ -5,6 +5,7 @@ from loguru import logger
 
 
 class DataCleaning:
+    """Class to clean up a dataset."""
 
     def __init__(self, dataset):
         """Initialize the class.

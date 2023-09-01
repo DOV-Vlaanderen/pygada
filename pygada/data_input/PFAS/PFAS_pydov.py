@@ -14,6 +14,7 @@ import json
 
 
 class RequestPFASdata:
+    """Class to download PFAS data through pydov."""
 
     def __init__(self):
         """Initialize the class.

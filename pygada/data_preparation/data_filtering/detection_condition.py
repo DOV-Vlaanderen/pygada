@@ -3,6 +3,7 @@ import pandas as pd
 
 
 class DetectionCondition:
+    """Class to handle the detection condition."""
 
     def __init__(self, dataset):
         """

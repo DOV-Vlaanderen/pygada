@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from pygada.data_preparation.data_cleaning.data_cleaning import DataCleaning
+from pygada.data_preparation.data_cleaning.general_data_cleaning import DataCleaning
 import pandas as pd
 
 
