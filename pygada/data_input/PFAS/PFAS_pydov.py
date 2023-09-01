@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from pydov.search.generic import WfsSearch
+#from pydov.search.generic import WfsSearch
 from pydov.search.grondwatermonster import GrondwaterMonsterSearch
 from pydov.search.grondwaterfilter import GrondwaterFilterSearch
 from pydov.util.location import Within, Box
@@ -16,7 +16,7 @@ import json
 class RequestPFASdata:
     """Class to download PFAS data through pydov."""
 
-    def __init__(self, id):
+    def __init__(self):
         """Initialize the class.
 
         Create a metadata file that contains the date, necessary package versions and the datapoints count.
@@ -51,7 +51,7 @@ class RequestPFASdata:
 
         package_versions = (f'pandas: {version("pandas")}', f'pydov: {version("pydov")}')
 
-        self.dictionary = {"id": id, "date": date, "versions": package_versions, "nb_datapoints": [{}]}
+        self.dictionary = {"date": date, "versions": package_versions, "nb_datapoints": [{}]}
         self.combined_datasets = {}
 
     def wfs_request(self, layer, location, max_features, query=None, sort_by=None):
