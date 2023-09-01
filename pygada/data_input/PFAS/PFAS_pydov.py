@@ -16,28 +16,36 @@ import json
 class RequestPFASdata:
     """Class to download PFAS data through pydov."""
 
-    def meta(self):
-        """Create a metadata file that contains the date, necessary package versions and the datapoints count.
+    def __init__(self):
+        """Initialize the class.
+
+        Create a metadata file that contains the date, necessary package versions and the datapoints count.
+
+        Parameters
+        ----------
+        id = int
+            The personal download id.
+
         """
-        
+
         def json_serial(obj):
             """JSON serializer for objects not serializable by default json code
-        
+
             Parameters
             ----------
             obj : datetime
                 The date and time.
-        
+
             Returns
             -------
             obj: str
                 The date as a string.
             """
-        
+
             if isinstance(obj, datetime):
                 return obj.isoformat()
             raise TypeError("Type %s not serializable" % type(obj))
-        
+
         date = datetime.now()
         date = json_serial(date)
 
