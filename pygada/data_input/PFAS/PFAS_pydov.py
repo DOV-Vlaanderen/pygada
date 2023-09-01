@@ -16,18 +16,13 @@ import json
 class RequestPFASdata:
     """Class to download PFAS data through pydov."""
 
-    def __init__(self, id):
-        """Initialize the class.
+    def __init__(self):
+        """Initialize the class."""
 
-        Create a metadata file that contains the date, necessary package versions and the datapoints count.
-
-        Parameters
-        ----------
-        id = int
-            The personal download id.
-
+    def meta(self):
+        """Create a metadata file that contains the date, necessary package versions and the datapoints count.
         """
-
+        
         def json_serial(obj):
             """JSON serializer for objects not serializable by default json code
         
@@ -51,7 +46,7 @@ class RequestPFASdata:
 
         package_versions = (f'pandas: {version("pandas")}', f'pydov: {version("pydov")}')
 
-        self.dictionary = {"id": id, "date": date, "versions": package_versions, "nb_datapoints": [{}]}
+        self.dictionary = {"date": date, "versions": package_versions, "nb_datapoints": [{}]}
         self.combined_datasets = {}
 
     def wfs_request(self, layer, location, max_features, query=None, sort_by=None):
