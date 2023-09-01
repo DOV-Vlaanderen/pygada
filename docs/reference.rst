@@ -19,12 +19,15 @@ PFAS
 .. automodule:: pygada.data_input.PFAS.PFAS_pydov
     :members:
 
+
 Data preparation
 ----------------
+
 Data cleaning
 *************
+
 General data cleaning
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 .. automodule:: pygada.data_preparation.data_cleaning.general_data_cleaning
     :members:
 
@@ -35,6 +38,7 @@ PFAS data cleaning
 
 Data filtering
 **************
+
 Data wrangling
 ^^^^^^^^^^^^^^
 .. automodule:: pygada.data_preparation.data_filtering.data_wrangling
@@ -49,4 +53,3 @@ Unique xyz
 ^^^^^^^^^^
 .. automodule:: pygada.data_preparation.data_filtering.unique_xyz
     :members:
-
