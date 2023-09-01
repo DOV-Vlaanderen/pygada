@@ -16,7 +16,7 @@ Soil
 
 PFAS
 ****
-.. automodule:: pygada.data_input.PFAS_pydov.PFAS_pydov
+.. automodule:: pygada.data_input.PFAS.PFAS_pydov
     :members:
 
 Data preparation
@@ -25,7 +25,7 @@ Data cleaning
 *************
 General data cleaning
 ^^^^^^^^^^^^^
-.. automodule:: pygada.data_preparation.data_cleaning
+.. automodule:: pygada.data_preparation.data_cleaning.general_data_cleaning
     :members:
 
 PFAS data cleaning
