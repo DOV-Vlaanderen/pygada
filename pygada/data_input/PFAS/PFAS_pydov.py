@@ -20,12 +20,6 @@ class RequestPFASdata:
         """Initialize the class.
 
         Create a metadata file that contains the date, necessary package versions and the datapoints count.
-
-        Parameters
-        ----------
-        id = int
-            The personal download id.
-
         """
 
         def json_serial(obj):
