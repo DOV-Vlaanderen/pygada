@@ -1,9 +1,0 @@
-git
-loguru
-openpyxl
-OWSLib
-packaging
-pandas
-tqdm
-pydov
-
