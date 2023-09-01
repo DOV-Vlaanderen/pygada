@@ -16,9 +16,6 @@ import json
 class RequestPFASdata:
     """Class to download PFAS data through pydov."""
 
-    def __init__(self):
-        """Initialize the class."""
-
     def meta(self):
         """Create a metadata file that contains the date, necessary package versions and the datapoints count.
         """
