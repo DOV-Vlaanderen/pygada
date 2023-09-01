@@ -32,7 +32,8 @@ class RequestPFASdata:
 
             Returns
             -------
-            The date as a string.
+            obj: str
+                The date as a string.
             """
 
             if isinstance(obj, datetime):
@@ -54,16 +55,16 @@ class RequestPFASdata:
         ----------
         layer : str
             The name of the layer containing the PFAS-data.
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
@@ -84,22 +85,23 @@ class RequestPFASdata:
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded groundwater monster and filter data for a given bounding box.
+        data: dataframe
+            The downloaded groundwater monster and filter data for a given bounding box.
         """
 
         gwmonster = GrondwaterMonsterSearch()
@@ -128,27 +130,27 @@ class RequestPFASdata:
         return data
 
     def biota(self, location, max_features, query=None, sort_by=None):
-        """
-        Download the biota data.
+        """Download the biota data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded biota data.
+        data_wfs_VMM_biota: dataframe
+            The downloaded biota data.
         """
         logger.info(f"Downloading biota data")
         data_wfs_VMM_biota = self.wfs_request(
@@ -166,27 +168,27 @@ class RequestPFASdata:
         return data_wfs_VMM_biota
 
     def effluent(self, location, max_features, query=None, sort_by=None):
-        """
-        Download the effluent data.
+        """Download the effluent data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded effluent data.
+        data_wfs_OVAM: dataframe
+            The downloaded effluent data.
         """
         logger.info(f"Downloading effluent data")
 
@@ -213,12 +215,11 @@ class RequestPFASdata:
         return data_wfs_OVAM
 
     def groundwater(self, location, max_features):
-        """
-        Download the groundwater data.
+        """Download the groundwater data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
@@ -227,7 +228,12 @@ class RequestPFASdata:
 
         Returns
         -------
-        The downloaded groundwater data.
+        data_pydov_VMM_gw: dataframe
+            The downloaded groundwater data from VMM.
+        data_wfs_OVAM: dataframe
+            The downloaded groundwater data from OVAM.
+        data_wfs_Lantis_gw: dataframe
+            The downloaded groundwater data from Lantis.
         """
         logger.info(f"Downloading groundwater data")
 
@@ -268,27 +274,27 @@ class RequestPFASdata:
         return data_pydov_VMM_gw, data_wfs_OVAM, data_wfs_Lantis_gw
 
     def migration(self, location, max_features, query=None, sort_by=None):
-        """
-        Download the migration data.
+        """Download the migration data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded migration data.
+        data_wfs_OVAM: dataframe
+            The downloaded migration data.
         """
         logger.info(f"Downloading migration data")
 
@@ -315,27 +321,27 @@ class RequestPFASdata:
         return data_wfs_OVAM
 
     def pure_product(self, location, max_features, query=None, sort_by=None):
-        """
-        Download the pure product data.
+        """Download the pure product data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded pure product data.
+        data_wfs_OVAM: dataframe
+            The downloaded pure product data.
         """
         logger.info(f"Downloading pure product data")
 
@@ -362,27 +368,27 @@ class RequestPFASdata:
         return data_wfs_OVAM
 
     def rainwater(self, location, max_features, query=None, sort_by=None):
-        """
-        Download the rainwater data.
+        """Download the rainwater data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded rainwater data.
+        data_wfs_OVAM: dataframe
+            The downloaded rainwater data.
         """
         logger.info(f"Downloading rainwater data")
 
@@ -409,12 +415,11 @@ class RequestPFASdata:
         return data_wfs_OVAM
 
     def soil(self, location, max_features):
-        """
-        Download the soil data.
+        """Download the soil data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
@@ -423,7 +428,10 @@ class RequestPFASdata:
 
         Returns
         -------
-        The downloaded soil data.
+        data_wfs_OVAM: dataframe
+            The downloaded soil data from OVAM.
+        data_wfs_Lantis_soil: dataframe
+            The downloaded soil data from Lantis.
         """
         logger.info(f"Downloading soil data")
         data_wfs_OVAM = self.wfs_request(
@@ -455,27 +463,31 @@ class RequestPFASdata:
         return data_wfs_OVAM, data_wfs_Lantis_soil
 
     def soil_water(self, location, max_features):
-        """
-        Download the soil water data.
+        """Download the soil water data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded soil water data.
+        data_wfs_VMM_ws: dataframe
+            The downloaded soil water data from VMM.
+        data_wfs_OVAM_sediment: dataframe
+            The downloaded sediment soil water data from OVAM.
+        data_wfs_OVAM_fixed: dataframe
+            The downloaded fixed soil water data from OVAM.
         """
         logger.info(f"Downloading soilwater data")
         data_wfs_VMM_ws = self.wfs_request(
@@ -514,27 +526,29 @@ class RequestPFASdata:
         return data_wfs_VMM_ws, data_wfs_OVAM_sediment, data_wfs_OVAM_fixed
 
     def surface_water(self, location, max_features):
-        """
-        Download the surface water data.
+        """Download the surface water data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded surface water data.
+        data_wfs_VMM_sw: dataframe
+            The downloaded surface water data from VMM.
+        data_wfs_OVAM: dataframe
+            The downloaded surface water data from OVAM.
         """
         logger.info(f"Downloading surface water data")
         data_wfs_VMM_sw = self.wfs_request(
@@ -566,27 +580,27 @@ class RequestPFASdata:
         return data_wfs_VMM_sw, data_wfs_OVAM
 
     def waste_water(self, location, max_features, query=None, sort_by=None):
-        """
-        Download the waste water data.
+        """Download the waste water data.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
             Limit the number of WFS features you want to be returned.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
-        query:
+        query: OgcExpression
             Find data based on one or more of its attribute values.
             (https://pydov.readthedocs.io/en/stable/query_attribute.html)
-        sort_by:
+        sort_by: list
             Sort on one or multiple attributes.
             (https://pydov.readthedocs.io/en/stable/sort_limit.html)
 
         Returns
         -------
-        The downloaded waste water data.
+        data_wfs_VMM_ww: dataframe
+            The downloaded waste water data.
         """
         logger.info(f"Downloading waste water data")
         data_wfs_VMM_ww = self.wfs_request(
@@ -607,12 +621,11 @@ class RequestPFASdata:
         return data_wfs_VMM_ww
 
     def combined_groundwater(self, location, max_features):
-        """
-        Download the groundwater data and combine it in one dataframe.
+        """Download the groundwater data and combine it in one dataframe.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
@@ -621,7 +634,8 @@ class RequestPFASdata:
 
         Returns
         -------
-        The downloaded and combined groundwater data.
+        groundwater: dataframe
+            The downloaded and combined groundwater data.
         """
         if 'Groundwater' in self.combined_datasets:
             gw_datasets = self.combined_datasets['Groundwater']
@@ -654,12 +668,11 @@ class RequestPFASdata:
         return groundwater
 
     def combined_soil(self, location, max_features):
-        """
-        Download the soil data and combine it in one dataframe.
+        """Download the soil data and combine it in one dataframe.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
@@ -668,7 +681,8 @@ class RequestPFASdata:
 
         Returns
         -------
-        The downloaded and combined soil data.
+        soil: dataframe
+            The downloaded and combined soil data.
         """
         if 'Soil' in self.combined_datasets:
             soil_datasets = self.combined_datasets['Soil']
@@ -695,12 +709,11 @@ class RequestPFASdata:
         return soil
 
     def combined_soil_water(self, location, max_features):
-        """
-        Download the soilwater data and combine it in one dataframe.
+        """Download the soilwater data and combine it in one dataframe.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
@@ -709,7 +722,8 @@ class RequestPFASdata:
 
         Returns
         -------
-        The downloaded and combined soilwater data.
+        soilwater: dataframe
+            The downloaded and combined soilwater data.
         """
         if 'Soil_water' in self.combined_datasets:
             soilwater_datasets = self.combined_datasets['Soil_water']
@@ -740,12 +754,11 @@ class RequestPFASdata:
         return soilwater
 
     def combined_surface_water(self, location, max_features):
-        """
-        Download the surface water data and combine it in one dataframe.
+        """Download the surface water data and combine it in one dataframe.
 
         Parameters
         ----------
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
@@ -754,7 +767,8 @@ class RequestPFASdata:
 
         Returns
         -------
-        The downloaded and combined surface water data.
+        surfacewater: dataframe
+            The downloaded and combined surface water data.
         """
         if 'Surface_water' in self.combined_datasets:
             surfacewater_datasets = self.combined_datasets['Surface_water']
@@ -781,12 +795,11 @@ class RequestPFASdata:
         return surfacewater
 
     def main(self, medium, location=None, max_features=None, save=False):
-        """
-        Call the functions to download the requested data and save the result in an Excel-file, with the different mediums as seperate tabs.
+        """Call the functions to download the requested data and save the result in an Excel-file, with the different mediums as seperate tabs.
 
         Parameters
         ----------
-        medium: list of str
+        medium: list
             The requested medium(s).
 
             Possibilities:
@@ -805,7 +818,7 @@ class RequestPFASdata:
                     - 'combined_soil'
                     - 'combined_soil_water'
                     - 'combined_surface_water'
-        location:
+        location: Box
             Query on location.
             (https://pydov.readthedocs.io/en/stable/query_location.html)
         max_features: int
@@ -816,7 +829,10 @@ class RequestPFASdata:
 
         Returns
         -------
-        The requested data in separate dataframe(s) and the metadata.
+        return_list: list
+            The requested data in separate dataframe(s)
+        metadata: json
+            The metadata.
         """
         start_time = datetime.now()
 
