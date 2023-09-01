@@ -3,7 +3,40 @@ import numpy as np
 from pygada.data_preparation.data_cleaning.data_cleaning import DataCleaning
 import pandas as pd
 
+
 def soil(inputfile, save=True):
+    """
+    Clean the soil dataset and report the overview in a metadata file.
+    Each type of error is added as a new attribute to the error dataframe. \n
+    Check for:\n
+    - date
+    - sum parameter
+    - detection condition
+    - unit
+    - top
+    - basis
+    Perform some extra manipulations: \n
+    - Some parameters are replaced by their synonym.
+    - The date is transformed to the datetime type
+    Ultimately, the clean and error result can be saved as separate text files.
+
+    Parameters
+    ----------
+    inputfile: text file
+        The input dataset.
+    save: Boolean
+        The option to save the cleaned and error dataset as separate text files.
+
+    Returns
+    -------
+    df_error: dataframe
+        The dataframe containing the errors.
+    df_result: dataframe
+        The cleaned dataframe without the errors.
+    metadata: json
+        A json object containing the amount of each error (# and %).
+    """
+
     df = pd.read_csv(inputfile, sep=';')
 
     df = df.rename(columns={'datum': 'date', 'detectieconditie': 'detection_condition', 'meetwaarde': 'value', 'meeteenheid': 'unit', 'bron': 'source'})
@@ -43,6 +76,39 @@ def soil(inputfile, save=True):
 
 
 def groundwater(inputfile, save=True):
+    """
+    Clean the groundwater dataset and report the overview in a metadata file.
+    Add each type of error as a new attribute to the error dataframe. \n
+    Check for:\n
+    - date
+    - sum parameter
+    - detection condition
+    - unit
+    - top
+    - basis
+    Perform some extra manipulations: \n
+    - Empty detection conditions are replaced by '='
+    - Some parameters are replaced by their synonym.
+    - The date is transformed to the datetime type
+    Ultimately, the clean and error result can be saved as separate text files.
+
+    Parameters
+    ----------
+    inputfile: text file
+        The input dataset.
+    save: Boolean
+        The option to save the cleaned and error dataset as separate text files.
+
+    Returns
+    -------
+    df_error: dataframe
+        The dataframe containing the errors.
+    df_result: dataframe
+        The cleaned dataframe without the errors.
+    metadata: json
+        A json object containing the amount of each error (# and %).
+    """
+
     df = pd.read_csv(inputfile, sep=';')
 
     df = df.rename(columns={'datum': 'date', 'detectieconditie': 'detection_condition', 'meetwaarde': 'value', 'meeteenheid': 'unit', 'bron': 'source'})

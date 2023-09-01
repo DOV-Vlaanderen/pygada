@@ -182,6 +182,8 @@ class DataCleaning:
         ----------
         len_result_df: int
             The length of the dataframe containing the error data records.
+        save: Boolean
+            The option to save the metadata file.
 
         Return
         ------

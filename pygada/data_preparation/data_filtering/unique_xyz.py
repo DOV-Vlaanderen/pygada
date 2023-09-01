@@ -1,11 +1,32 @@
 import pandas as pd
 
-from pygada.data_preparation.data_filtering.data_wrangling import FilterTransformData
-
 
 def filter_to_3d(df):
+    """
+    Filter the dataset to a 3D dataset containing unique values, considering the most recent data for the combination of following attributes:\n
+    - parameter
+    - x_m_L72
+    - y_m_L72
+    - top_m_mv
+    - basis_m_mv
+    - source
+    - matrix
+
+    If multiple records have these unique combination, the mean of the values is considered.
+
+    Parameters
+    ----------
+    df: dataframe
+        The input dataset.
+
+    Returns
+    -------
+    df: dataframe
+        The transformed dataset containing 'unique xyz-coordinates'.
+    """
+
     df_len_start = len(df)
-    df2 = df[df.duplicated()]  # subset=['field_lab', 'parameter', 'x', 'y', 'top', 'bottom', 'source']
+    df2 = df[df.duplicated()]
     df2 = df2.reset_index()
     df_copy = df.copy()
     for i in range(len(df2)):
@@ -30,16 +51,3 @@ def filter_to_3d(df):
     df_len_end = len(df)
     print(f'Filtered {df_len_start-df_len_end} datapoints.')
     return df
-
-
-if __name__ == '__main__':
-
-    pd.set_option('display.max_columns', None)
-    df_gw = pd.read_csv('C:/Users/vandekgu/PycharmProjects/pygada/pygada/test_data/results/gw_test_data_adapted.csv')
-    #print(df_gw)
-    ftd = FilterTransformData()
-    df_gw = ftd.top_filter(df_gw)
-    df_gw = ftd.change_df_col_names(df_gw, 'groundwater')
-
-
-    df = filter_to_3d(df_gw)

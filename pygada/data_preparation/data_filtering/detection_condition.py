@@ -5,23 +5,54 @@ import pandas as pd
 class DetectionCondition:
 
     def __init__(self, dataset):
-        """Initialize the class"""
+        """
+        Initialize the class.
+
+        Parameters
+        ----------
+        dataset: dataframe
+            The input dataset.
+        """
 
         self.df = dataset
 
     def lower_bound(self):
+        """
+        Change the values to zero if the detection condition is '<'. The lower-bound principle.
+
+        Returns
+        -------
+        df: dataframe
+            The dataset with adapted values to the lower-bound principle for the detection condition.
+        """
 
         self.df['value'] = np.where(self.df['detection_condition'] == '<', 0, self.df['value'])
 
         return self.df
 
     def middle_bound(self):
+        """
+        Change the values to the detection limit divided by two if the detection condition is '<'. The middle-bound principle.
+
+        Returns
+        -------
+        df: dataframe
+            The dataset with adapted values to the middle-bound principle for the detection condition.
+        """
 
         self.df['value'] = np.where(self.df['detection_condition'] == '<', self.df.value.astype(float).div(2), self.df['value'])
 
         return self.df
 
     def upper_bound(self):
+        """
+        Change the values to the detection limit if the detection condition is '<'. The upper-bound principle.
+
+        Returns
+        -------
+        df: dataframe
+            The dataset with adapted values to the upper-bound principle for the detection condition.
+        """
 
         self.df['value'] = np.where(self.df['detection_condition'] == '<', self.df['value'], self.df['value'])
 
