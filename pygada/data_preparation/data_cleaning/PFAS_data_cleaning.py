@@ -3,7 +3,6 @@ import numpy as np
 from pygada.data_preparation.data_cleaning.data_cleaning import DataCleaning
 import pandas as pd
 
-
 def soil(inputfile, save=True):
     df = pd.read_csv(inputfile, sep=';')
 
@@ -24,7 +23,7 @@ def soil(inputfile, save=True):
     df_error = df_error.merge(df_error_top, how='outer', on=original_columns)
     df_error_basis = data_cleaning.basis('basis_m_mv')
     df_error = df_error.merge(df_error_basis, how='outer', on=original_columns)
-    metadata = data_cleaning.meta(df_error, save)
+    metadata = data_cleaning.meta(len(df_error), save)
 
     df_error_2 = df_error[original_columns]
     df_result = pd.concat([df, df_error_2]).drop_duplicates(keep=False)
@@ -63,7 +62,7 @@ def groundwater(inputfile, save=True):
     df_error = df_error.merge(df_error_top, how='outer', on=original_columns)
     df_error_basis = data_cleaning.basis('basis_m_mv')
     df_error = df_error.merge(df_error_basis, how='outer', on=original_columns)
-    metadata = data_cleaning.meta(df_error, save)
+    metadata = data_cleaning.meta(len(df_error), save)
 
     df_error_2 = df_error[original_columns]
     df_result = pd.concat([df, df_error_2]).drop_duplicates(keep=False)

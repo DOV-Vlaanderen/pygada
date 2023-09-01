@@ -58,7 +58,8 @@ class DataCleaning:
 
     def sum_parameter(self, column, sum_parameters):
         """Check for PFAS sum parameters.
-        These parameters already containing some interpretation. The lower bound principle, a value lower than the detection limit is equal to zero.
+        These parameters already containing some interpretation.
+        The lower bound principle, a value lower than the detection limit is equal to zero.
 
         Parameters
         ----------
@@ -174,9 +175,20 @@ class DataCleaning:
 
         return df_error_basis
 
-    def meta(self, result_df, save=True):
+    def meta(self, len_result_df, save=True):
+        """Create a metadata file, containing information about the type and amount of errors (# and %).
 
-        self.metadata.update({"Records with at least 1 error": {"#": len(result_df), "%": round(len(result_df) / len(self.df) * 100, 2)}})
+        Parameters
+        ----------
+        len_result_df: int
+            The length of the dataframe containing the error data records.
+
+        Return
+        ------
+        metadata : json
+            A json object containing the amount of each error."""
+
+        self.metadata.update({"Records with at least 1 error": {"#": len(len_result_df), "%": round(len(len_result_df) / len(self.df) * 100, 2)}})
 
         metadata = json.dumps(self.metadata, indent=3)
 
