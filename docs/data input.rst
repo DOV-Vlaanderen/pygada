@@ -419,10 +419,14 @@ Soil-pydov
 
 PFAS-pydov
 ----------
+
+For the specific PFAS-dataset you can only integrate `query on location`_ and `using limit`_ (using a limit number of WFS features returned) from pydov at the moment.
+In addition to those functionalities you can query on the medium.
+
 .. dropdown:: Possible mediums
     :animate: fade-in
 
-    From the following mediums PFAS data can be downloaded.
+    PFAS data can be downloaded for the following mediums.
 
     - all
     - biota
@@ -435,10 +439,14 @@ PFAS-pydov
     - soil water
     - surface water
     - waste water
+    - combined_groundwater
+    - combined_soil
+    - combined_soil_water
+    - combined_surface_water
 
-For more information check `the corresponding pydov documentation`_.
+For more information check `the corresponding pydov source documentation`_.
 
-.. _the corresponding pydov documentation: https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/README.md
+.. _the corresponding pydov source documentation: https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/README.md
 
 Personal dataset
 ----------------
