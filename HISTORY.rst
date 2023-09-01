@@ -4,7 +4,7 @@
 History
 =======
 
-v0.0.1 (unreleased)
+v0.1.0 
 -------------------
 
-- In construction
+- First test release
