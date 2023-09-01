@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-#from pydov.search.generic import WfsSearch
+from pydov.search.generic import WfsSearch
 from pydov.search.grondwatermonster import GrondwaterMonsterSearch
 from pydov.search.grondwaterfilter import GrondwaterFilterSearch
 from pydov.util.location import Within, Box
