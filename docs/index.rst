@@ -49,6 +49,7 @@ Contents:
    contributing
    development
    history
+   reference
    test dataset
    
 

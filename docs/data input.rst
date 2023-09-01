@@ -13,13 +13,17 @@ There are two data-input options for pygada.
 .. _pydov: https://pydov.readthedocs.io/en/stable/
 
 | In the first case, the scripts to download soil- and groundwaterdata from DOV is integrated in pygada.
-| As user you can use all the functionalities of pydov to `query on attribute properties`_, to `query on location`_, to `sort the data`_, to `use a limit number of WFS features returned`_, etc.
-| For the specific PFAS-dataset you can only `query on location`_ and `use a limit number of WFS features returned`_ from pydov for the moment. In addition to those functionalities you can query on the medium.
+| As user you have to define the parameter(s) and can make use of the functionalities of pydov to query the data.
+| Checkout:
+- `Query on attribute properties`_
+- `Query on location`_
+- `Sorting`_
+- `Using limit`_
 
-.. _query on attribute properties: https://pydov.readthedocs.io/en/stable/query_attribute.html
-.. _query on location: https://pydov.readthedocs.io/en/stable/query_location.html
-.. _sort the data: https://pydov.readthedocs.io/en/stable/sort_limit.html
-.. _use a limit number of WFS features returned: https://pydov.readthedocs.io/en/stable/sort_limit.html
+.. _Query on attribute properties: https://pydov.readthedocs.io/en/stable/query_attribute.html
+.. _Query on location: https://pydov.readthedocs.io/en/stable/query_location.html
+.. _Sorting: https://pydov.readthedocs.io/en/stable/sort_limit.html
+.. _Using limit: https://pydov.readthedocs.io/en/stable/sort_limit.html
 
 Groundwater-pydov
 -----------------
@@ -415,11 +419,15 @@ Soil-pydov
 
 PFAS-pydov
 ----------
+
+For the specific PFAS-dataset you can only integrate `query on location`_ and `using limit`_ (using a limit number of WFS features returned) from pydov at the moment.
+In addition to those functionalities you can query on the medium.
+
 .. dropdown:: Possible mediums
     :animate: fade-in
-    
-    From the following mediums PFAS data can be downloaded.
-    
+
+    PFAS data can be downloaded for the following mediums.
+
     - all
     - biota
     - effluent
@@ -431,10 +439,14 @@ PFAS-pydov
     - soil water
     - surface water
     - waste water
+    - combined_groundwater
+    - combined_soil
+    - combined_soil_water
+    - combined_surface_water
 
-For more information check `the corresponding pydov documentation`_.
+For more information check `the corresponding pydov source documentation`_.
 
-.. _the corresponding pydov documentation: https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/README.md
+.. _the corresponding pydov source documentation: https://github.com/DOV-Vlaanderen/pydov/blob/master/contrib/PFAS_concentrations/README.md
 
 Personal dataset
 ----------------
