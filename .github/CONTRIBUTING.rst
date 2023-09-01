@@ -2,7 +2,7 @@
 .. _contribute:
 
 Contributing to pygada
-=====================
+======================
 
 First of all, thanks for considering contributing to pygada! It's people like you that make it
 rewarding for us - the project :ref:`authors` to work on pygada.
