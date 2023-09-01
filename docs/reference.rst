@@ -23,9 +23,9 @@ Data preparation
 ----------------
 Data cleaning
 *************
-Data cleaning
+General data cleaning
 ^^^^^^^^^^^^^
-.. automodule:: pygada.data_preparation.data_cleaning.data_cleaning
+.. automodule:: pygada.data_preparation.data_cleaning
     :members:
 
 PFAS data cleaning
