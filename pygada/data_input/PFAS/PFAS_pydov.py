@@ -781,7 +781,6 @@ class RequestPFASdata:
         return surfacewater
 
     def main(self, medium, location=None, max_features=None, save=False):
-
         """
         Call the functions to download the requested data and save the result in an Excel-file, with the different mediums as seperate tabs.
 
