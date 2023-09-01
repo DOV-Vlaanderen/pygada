@@ -27,12 +27,14 @@ Data input
    notebooks/data_input/soil_pydov.ipynb
    notebooks/data_input/PFAS_pydov.ipynb
 
---------------
-Data filtering
---------------
+----------------
+Data preparation
+----------------
 
 .. toctree::
    :maxdepth: 1
+
+   notebooks/data_preparation/PFAS/PFAS_data_preparation.ipynb
 
 
 -------------------------
