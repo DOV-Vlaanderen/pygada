@@ -34,10 +34,16 @@ def json_serial(obj):
 class RequestPFASdata:
     """Class to download PFAS data through pydov."""
 
-    def __init__(self):
+    def __init__(self, id):
         """Initialize the class.
 
         Create a metadata file that contains the date, necessary package versions and the datapoints count.
+
+        Parameters
+        ----------
+        id = int
+            The personal download id.
+
         """
 
         date = datetime.now()
@@ -45,7 +51,7 @@ class RequestPFASdata:
 
         package_versions = (f'pandas: {version("pandas")}', f'pydov: {version("pydov")}')
 
-        self.dictionary = {"date": date, "versions": package_versions, "nb_datapoints": [{}]}
+        self.dictionary = {"id": id, "date": date, "versions": package_versions, "nb_datapoints": [{}]}
         self.combined_datasets = {}
 
     def wfs_request(self, layer, location, max_features, query=None, sort_by=None):
