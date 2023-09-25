@@ -191,7 +191,7 @@ class DataCleaning:
         metadata : json
             A json object containing the amount of each error."""
 
-        self.metadata.update({"Records with at least 1 error": {"#": len(len_result_df), "%": round(len(len_result_df) / len(self.df) * 100, 2)}})
+        self.metadata.update({"Records with at least 1 error": {"#": len_result_df, "%": round(len_result_df / len(self.df) * 100, 2)}})
 
         metadata = json.dumps(self.metadata, indent=3)
 
