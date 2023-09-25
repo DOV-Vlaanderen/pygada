@@ -176,7 +176,7 @@ class DataCleaning:
 
         return df_error_basis
 
-    def meta(self, len_result_df, save=True):
+    def meta(self, len_result_df, source, matrix,  save=True):
         """Create a metadata file, containing information about the type and amount of errors (# and %).
 
         Parameters
@@ -200,7 +200,7 @@ class DataCleaning:
             path1 = f"{path}/results"
             if not os.path.exists(path1):
                 os.mkdir(f"{path}/results")
-            path2 = f"{path}/results/metadata.json"
+            path2 = f"{path}/results/metadata_{source}_{matrix}.json"
             with open(path2, "w") as outfile:
                 outfile.write(metadata)
 
