@@ -115,7 +115,7 @@ def groundwater(inputfile, source, save=True):
 
     df = pd.read_csv(inputfile, sep=';')
 
-    df = df.rename(columns={'datum': 'date', 'detectieconditie': 'detection_condition', 'meetwaarde': 'value', 'meeteenheid': 'unit', 'bron': 'source', 'top_in_m': 'top_m_mv', 'basis_in_m': 'basis_m_mv'})
+    df = df.rename(columns={'datum': 'date', 'detectieconditie': 'detection_condition', 'meetwaarde': 'value', 'meeteenheid': 'unit', 'bron': 'source', 'top_in_m': 'top_m_mv', 'basis_in_m': 'basis_m_mv', 'filter_van_m': 'top_m_mv', 'filter_tot_m': 'basis_m_mv', 'datum_bemonstering': 'date', 'waarde': 'value', 'eenheid': 'unit'})
     original_columns = df.columns.values.tolist()
     df_error = pd.DataFrame(columns=original_columns)
 
@@ -159,6 +159,7 @@ def groundwater(inputfile, source, save=True):
 
 
 if __name__ == '__main__':
-    soil('../../datasets/PFAS/PFAS_data_OVAM_bodem.csv', 'OVAM', save=True)
-    groundwater('../../datasets/PFAS/PFAS_data_OVAM_grondwater.csv', 'OVAM', save=True)
-
+    #soil('../../datasets/PFAS/PFAS_data_OVAM_bodem.csv', 'OVAM', save=True)
+    #groundwater('../../datasets/PFAS/PFAS_data_OVAM_grondwater.csv', 'OVAM', save=True)
+    groundwater('../../datasets/PFAS/PFAS_grondwater_Lantis.csv', 'Lantis', save=True)
+    groundwater('../../datasets/PFAS/PFAS_grondwater_OVAM.csv', 'OVAM', save=True)
