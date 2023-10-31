@@ -98,6 +98,132 @@ class Highcharts:
 
         return as_js_literal
 
+    def boxplot_extended(self):
+
+        data_series = []
+
+        def boxplot_matrix(df, matrix, count):
+            data = df[df['matrix'] == matrix]  # data = df[(df['matrix']==matrix) & (df['source']=='VMM')]
+            unit = data['unit'].unique()[0]
+            data['new_id'] = data.groupby(['date', 'x_m_L72', 'y_m_L72', 'top_m_mv', 'basis_m_mv']).ngroup()
+
+            data = data.pivot_table(index='new_id', columns='parameter', values='value')
+            data = data.loc[:, data.columns.notna()]
+
+            df_boxplot_stats = pd.DataFrame({'whislo': [], 'q1': [], 'med': [], 'q3': [], 'whishi': []})
+            df_boxplot_outliers = pd.DataFrame({'parameter': [], 'value': []})
+
+            for i in list(data.columns):
+                boxplot = boxplot_stats(data[i].dropna())
+                boxplot = pd.DataFrame(boxplot)
+                boxplot = boxplot.drop(['mean', 'iqr', 'cilo', 'cihi', 'fliers'], axis=1)
+                whishi = boxplot.pop('whishi')
+                boxplot.insert(4, 'whishi', whishi)
+                df_boxplot_stats = pd.concat([df_boxplot_stats, boxplot])
+                outliers = data[i][(data[i] < boxplot['whislo'].values[0]) | (data[i] > boxplot['whishi'].values[0])]
+                df_boxplot_outliers = pd.concat(
+                    [df_boxplot_outliers, pd.DataFrame({'parameter': i, 'value': outliers.values})])
+
+            df_boxplot_stats = df_boxplot_stats.transpose()
+            df_boxplot_stats = df_boxplot_stats.set_axis(list(data.columns.values), axis=1)
+            df_boxplot_stats = df_boxplot_stats.replace(0, 0.0001)
+
+            columns = list(df_boxplot_stats.columns)
+            data = list(df_boxplot_stats[x].values.tolist() for x in columns)
+
+            index_list = []
+            outliers_list = []
+            for i in df_boxplot_outliers['parameter'].values.tolist():
+                index_list.append(columns.index(i))
+            df_boxplot_outliers['index'] = index_list
+
+            for i in range(len(df_boxplot_outliers)):
+                outliers_list.append(
+                    [df_boxplot_outliers['index'].values.tolist()[i], df_boxplot_outliers['value'].values.tolist()[i]])
+
+            data = {
+                "name": "Boxplots",
+                "data": data,
+                "tooltip": {
+                    "headerFormat": '<em>Parameter {point.key}</em><br/>'
+                },
+                'yAxis': f'{count}',
+                "type": 'boxplot', 'color': self.color[count]}, {
+                "name": "Extreme value",
+                "data": outliers_list,
+                "type": 'scatter',
+                "marker": {
+                    "fillColor": 'white',
+                    "lineWidth": 0.3,
+                    "lineColor": self.color[count]
+                },
+                "tooltip": {
+                    "pointFormat": 'Concentration: {point.y} ' f'{unit}'
+                },
+                'yAxis': f'{count}'}
+
+            return data, outliers_list, unit, columns
+
+        data_soil, outliers_list_soil, unit_soil, columns_soil = boxplot_matrix(self.df, 'Soil', count=0)
+        data_series.extend(data_soil)
+        data_gw, outliers_list_gw, unit_gw, columns_gw = boxplot_matrix(self.df, 'Groundwater', count=1)
+        data_series.extend(data_gw)
+        columns = columns_gw
+        columns.extend(x for x in columns_soil if x not in columns)
+
+        options_kwargs = {
+            'chart': {
+                'zooming': {
+                    'key': 'shift',
+                    'type': 'xy'
+                },
+            },
+            'title': {
+                'text': 'Box Plot per Parameter'
+            },
+
+            'legend': {
+                'enabled': False
+            },
+            'plotOptions': {
+                'series': {
+                    'turboThreshold': 0,
+                    'boostThreshold': 0
+                }
+            },
+            'xAxis': {
+                'categories': columns,
+                'title': {
+                    'text': 'Parameter'
+                }
+            },
+
+            'yAxis': [{
+                'type': 'logarithmic',
+                'min': 0.0001,
+                'title': {
+                    'text': f'Bodem concentraties in {unit_soil}'
+                },
+                'height': '45%'
+            }, {
+                'type': 'logarithmic',
+                'min': 0.0001,
+                'title': {
+                    'text': f'Grondwater concentraties in {unit_gw}'
+                },
+                'top': '55%',
+                'height': '45%',
+                'offset': 0,
+            }]
+        }
+
+        chart = Chart(options=options_kwargs, container='boxplot_extended')
+        chart.add_series(*data_series)
+
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/boxplot_extended.js')
+
+        return as_js_literal
+
     def correlation_heatmap(self, container, data_info, max_df=None, count=None):
 
         data_highcharts = []
@@ -303,6 +429,53 @@ class Highcharts:
         chart.add_series(*series)
 
         as_js_literal = chart.to_js_literal('./interactive_plots/rendering/count_datapoints_timeseries.js')
+
+        return as_js_literal
+
+    def count_datapoints_timeseries_extended(self, series, drilldown):
+
+        options_kwargs = {
+            'chart': {
+                'zooming': {
+                    'key': 'shift',
+                    'type': 'x'
+                },
+                'type': 'line',
+                'events': {'drilldown': drilldown},
+            },
+            'title': {
+                'text': 'Count of datapoints'
+            },
+
+            'legend': {
+                'enabled': True,
+                'showEmpty': False,
+            },
+
+            'xAxis': {
+                'type': 'datetime',
+                'showEmpty': 'false',
+                'title': {
+                    'text': 'Date'
+                }
+            }
+            ,
+
+            'yAxis': {
+                'title': {
+                    'text': 'Count'
+                }
+            },
+            'plotOptions': {
+                'series': {
+                    'turboThreshold': 0}
+            },
+            'series': series,
+            'drilldown': {'series': []}
+        }
+
+        chart = Chart(options=options_kwargs, container='count_datapoints_timeseries_extended')
+        as_js_literal = chart.to_js_literal('./interactive_plots/rendering/count_datapoints_timeseries_extended.js')
 
         return as_js_literal
 

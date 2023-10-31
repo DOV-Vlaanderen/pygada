@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 # Import classes using precise module indications. For example:
 from pygada.explorative_data_analysis.interactive_plots.highcharts import Highcharts
-
+from matplotlib.cbook import boxplot_stats
 
 def boxplots(inputdf, type=None, outputpath=None, save=False):
     """Create a box plot per parameter that is in the dataset. The y-scale contains the concentrations in log.
@@ -51,6 +51,15 @@ def boxplots(inputdf, type=None, outputpath=None, save=False):
         highcharts = Highcharts(df, unit)
         highcharts.boxplot()
 
+def boxplots_extended(inputdf):
 
-df2 = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
-boxplots(df2, 'dynamic')
+    data = inputdf
+    highcharts = Highcharts(data)
+    highcharts.boxplot_extended()
+
+#df2 = pd.read_csv('C:/Users/vandekgu/OneDrive - Vlaamse overheid - Office 365/Documenten/PycharmProjects/pygada/pygada/test_data/results/PFAS_gw_VMM.csv')
+#boxplots(df2, 'dynamic')
+
+if __name__ == '__main__':
+    df = pd.read_csv('demo_dataset_filtered_3D.txt')
+    boxplots_extended(df)
